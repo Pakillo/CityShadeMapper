@@ -33,7 +33,9 @@ hacer muchas cosas, p ej
     al sol en verano, o menos en invierno
 
 -   Analizar dónde el arbolado está o podría amortiguar más el exceso de
-    calor (incluso a nivel de especie, tipo de hoja etc)
+    calor (incluso a nivel de especie, tipo de hoja etc, ya que existe
+    un mapa detallado del arbolado:
+    <https://www.arbomap.com/arbomapciudadano/accesos/sevilla/>)
 
 -   Relacionarlo con medidas de temperatura de Landsat
 

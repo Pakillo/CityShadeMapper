@@ -34,7 +34,7 @@ Una vez tengamos el mapa de sombras/insolación de detalle se pueden hacer mucha
 
 - Analizar, calle a calle o barrio a barrio, las zonas más expuestas al sol en verano, o menos en invierno
 
-- Analizar dónde el arbolado está o podría amortiguar más el exceso de calor (incluso a nivel de especie, tipo de hoja etc)
+- Analizar dónde el arbolado está o podría amortiguar más el exceso de calor (incluso a nivel de especie, tipo de hoja etc, ya que existe un mapa detallado del arbolado: https://www.arbomap.com/arbomapciudadano/accesos/sevilla/)
 
 - Relacionarlo con medidas de temperatura de Landsat
 
