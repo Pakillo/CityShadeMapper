@@ -16,12 +16,12 @@ dtm <- grid_terrain(las, 1, tin()) # hacer el MDT con una resolucion de 1 metro
 plot(dtm)
 
 # calculo la altura de los edificios y arboles
-opt_output_files(las) <- "C:/Users/Jesus/Documents/paquilo/chm_{XLEFT}_{YBOTTOM}"
+opt_output_files(las) <- "C:/Users/Jesus/Documents/lidar/chm_{XLEFT}_{YBOTTOM}"
 chm <- rasterize_canopy(las, res = 1, pitfree(c(0,10,20), c(0, 1)))
 plot(chm)
 
 #PARA VERLO EN 3D, pero da fallos
 library(rassta)
-plot3D(dtm)
+plot3D(chm)
 
 
