@@ -3,7 +3,7 @@
 library(lidR)
 
 #descargo los datos lidar
-las <- readLAScatalog("C:/Users/Jesus/Documents/paquilo/laz", progress = TRUE)
+las <- readLAScatalog("C:/Users/Jesus/Documents/lidar/laz", progress = TRUE)
 
 #filtro datos innecesarios o erroneos
 opt_filter(las) <- "-drop_z_below 0 -drop_class 1 -drop_class 7 -drop_class 12"
@@ -24,4 +24,5 @@ plot(chm)
 library(rassta)
 plot3D(chm)
 
-
+#Si funciona la funcion interna de plot en 3d de lidr, aunque es mas fea
+plot_dtm3d(chm, bg = "white")
