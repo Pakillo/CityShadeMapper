@@ -39,6 +39,8 @@ hacer muchas cosas, p ej
 
 -   Relacionarlo con medidas de temperatura de Landsat
 
+-   Diseñar rutas de sombra para ir de un sitio a otro
+
 etc
 
 ## Papers relacionados
