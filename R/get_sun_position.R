@@ -16,6 +16,7 @@
 get_sun_position <- function(lon = NULL, lat = NULL, date = NULL, hour = NULL) {
 
   stopifnot(hour %in% seq(from = 0, to = 23, by = 1))
+  stopifnot(is.numeric(lat), lat > -90, lat < 90)
 
   # Find time zone from lon-lat
   tz <- lutz::tz_lookup_coords(lat = lat, lon = lon, method = "fast", warn = FALSE)
