@@ -16,3 +16,21 @@ terra_to_matrix <- function(ras = NULL) {
   out
 
 }
+
+
+#' Convert a matrix into a SpatRaster
+#'
+#' @param mat A matrix
+#' @param crs CRS of the resulting SpatRaster
+#' @param ... Further arguments for [terra::rast()]
+#'
+#' @return A SpatRaster object
+#' @export
+#'
+
+matrix_to_terra <- function(mat = NULL, crs = "", ...) {
+
+  ras <- terra::rast(mat, crs = crs, ...)
+
+  ras
+}
