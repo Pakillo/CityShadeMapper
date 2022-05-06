@@ -2,6 +2,5 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^data-raw$
-^analyses$
-^manuscript$
 ^makefile\.R$
+playground.R
