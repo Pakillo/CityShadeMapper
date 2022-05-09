@@ -11,7 +11,7 @@ terra_to_matrix <- function(ras = NULL) {
     ras <- terra::rast(ras)
   }
 
-  out <- terra::as.matrix(ras, wide = TRUE)
+  out <- t(terra::as.matrix(ras, wide = TRUE))
 
   out
 
@@ -22,15 +22,16 @@ terra_to_matrix <- function(ras = NULL) {
 #'
 #' @param mat A matrix
 #' @param crs CRS of the resulting SpatRaster
+#' @param extent extent
 #' @param ... Further arguments for [terra::rast()]
 #'
 #' @return A SpatRaster object
 #' @export
 #'
 
-matrix_to_terra <- function(mat = NULL, crs = "", ...) {
+matrix_to_terra <- function(mat = NULL, crs = "", extent = NULL, ...) {
 
-  ras <- terra::rast(mat, crs = crs, ...)
+  ras <- terra::rast(mat, crs = crs, extent = extent, ...)
 
   ras
 }

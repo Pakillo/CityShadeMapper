@@ -5,6 +5,7 @@
 #' @param sun.angle Sun angle in degrees (zero degrees is North, increasing clockwise)
 #' @param lambert Logical
 #' @param crs coordinate reference system, see [terra::crs()]
+#' @param extent raster extent
 #' @param ... further arguments to [rayshader::ray_shade()]
 #'
 #' @return A SpatRaster of light intensities, as produced by [rayshader::ray_shade()]
@@ -14,7 +15,7 @@
 calc_shade <- function(heights = NULL,
                        sun.altitude = NULL, sun.angle = NULL,
                        lambert = TRUE,
-                       crs = "", ...) {
+                       crs = "", extent = NULL, ...) {
 
    # Need to vectorize for sun altitude and angle
 
@@ -24,6 +25,10 @@ calc_shade <- function(heights = NULL,
                                    lambert = lambert,  # correct?
                                    ...)
 
-  shaderas <- matrix_to_terra(shademat, crs)
+  shaderas <- matrix_to_terra(t(shademat), crs = crs, extent = extent)
+
+  shaderas <- terra::flip(shaderas, direction = "horizontal")
+
+  shaderas
 
 }
