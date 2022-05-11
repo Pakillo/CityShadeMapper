@@ -4,12 +4,14 @@
 \alias{matrix_to_terra}
 \title{Convert a matrix into a SpatRaster}
 \usage{
-matrix_to_terra(mat = NULL, crs = "", ...)
+matrix_to_terra(mat = NULL, crs = "", extent = NULL, ...)
 }
 \arguments{
 \item{mat}{A matrix}
 
 \item{crs}{CRS of the resulting SpatRaster}
+
+\item{extent}{extent}
 
 \item{...}{Further arguments for \code{\link[terra:rast]{terra::rast()}}}
 }

@@ -5,24 +5,27 @@
 \title{Calculate shades from elevation map}
 \usage{
 calc_shade(
-  heights = NULL,
+  height.mat = NULL,
   sun.altitude = NULL,
   sun.angle = NULL,
-  lambert = TRUE,
   crs = "",
+  extent = NULL,
+  filename = NULL,
   ...
 )
 }
 \arguments{
-\item{heights}{Height matrix, as calculated by \code{\link[=terra_to_matrix]{terra_to_matrix()}}.}
+\item{height.mat}{Height matrix, as calculated by \code{\link[=terra_to_matrix]{terra_to_matrix()}}.}
 
 \item{sun.altitude}{Sun altitude (angle from the horizon, in degrees)}
 
 \item{sun.angle}{Sun angle in degrees (zero degrees is North, increasing clockwise)}
 
-\item{lambert}{Logical}
-
 \item{crs}{coordinate reference system, see \code{\link[terra:crs]{terra::crs()}}}
+
+\item{extent}{raster extent, see \code{\link[terra:ext]{terra::ext()}}}
+
+\item{filename}{Character. Optional. Provide a filename to save the output raster on disk.}
 
 \item{...}{further arguments to \code{\link[rayshader:ray_shade]{rayshader::ray_shade()}}}
 }
