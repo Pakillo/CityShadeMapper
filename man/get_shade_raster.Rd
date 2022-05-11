@@ -28,7 +28,8 @@ get_shade_raster(
   }}
 }
 \value{
-A (possibly multilayer) SpatRaster object
+A (possibly multilayer) SpatRaster object with the intensity of shading
+at each pixel for every date and time
 }
 \description{
 Get a shade raster for given dates and hours

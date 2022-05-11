@@ -6,7 +6,8 @@
 #' @inheritParams calc_shade
 #' @inheritDotParams calc_shade
 #'
-#' @return A (possibly multilayer) SpatRaster object
+#' @return A (possibly multilayer) SpatRaster object with the intensity of shading
+#' at each pixel for every date and time
 #' @export
 #'
 get_shade_raster <- function(height.ras = NULL,
