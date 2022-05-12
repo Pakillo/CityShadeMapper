@@ -6,6 +6,7 @@
 \usage{
 get_shade_raster(
   height.ras = NULL,
+  zscale = 1,
   date = NULL,
   hour = NULL,
   omit.nights = TRUE,
@@ -15,6 +16,10 @@ get_shade_raster(
 }
 \arguments{
 \item{height.ras}{A \code{\link[terra:SpatRaster-class]{terra::SpatRaster()}} with heights data}
+
+\item{zscale}{Default \code{1}. The ratio between the x and y spacing (which are assumed to be equal)
+and the z axis. For example, if the elevation is in units of meters and the grid values
+are separated by 10 meters, \code{zscale} would be 10.}
 
 \item{date}{A Date object or character giving the date in YYYY-MM-DD format (e.g. "2021-02-19").
 Can be a vector too, e.g. c("2021-02-19", "2021-08-04").
@@ -37,7 +42,14 @@ at each pixel for every date and time
 Get a shade raster for given dates and hours
 }
 \examples{
+library(rayshader)
 library(terra)
+data(montereybay)
+height.ras <- rast(montereybay,
+crs = attr(montereybay, "crs"),
+extent = attr(montereybay, "extent"))
+shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 11:14, zscale = 200)
+
 height.ras <- rast(nrows = 10, ncols = 10, xmin = -6, xmax = -5, ymin = 37, ymax = 38,
 crs = "epsg:4326", vals = rep(0, 10*10))
 height.ras[5,5] <- 8

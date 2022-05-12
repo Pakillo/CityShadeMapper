@@ -8,6 +8,7 @@ calc_shade(
   height.mat = NULL,
   sun.altitude = NULL,
   sun.angle = NULL,
+  zscale = 1,
   crs = "",
   extent = NULL,
   filename = NULL,
@@ -20,6 +21,10 @@ calc_shade(
 \item{sun.altitude}{Sun altitude (angle from the horizon, in degrees)}
 
 \item{sun.angle}{Sun angle in degrees (zero degrees is North, increasing clockwise)}
+
+\item{zscale}{Default \code{1}. The ratio between the x and y spacing (which are assumed to be equal)
+and the z axis. For example, if the elevation is in units of meters and the grid values
+are separated by 10 meters, \code{zscale} would be 10.}
 
 \item{crs}{coordinate reference system, see \code{\link[terra:crs]{terra::crs()}}}
 

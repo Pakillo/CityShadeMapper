@@ -4,6 +4,9 @@
 #'
 #' @param height.ras A [terra::SpatRaster()] with heights data
 #' @inheritParams get_sun_position
+#' @param zscale Default `1`. The ratio between the x and y spacing (which are assumed to be equal)
+#'  and the z axis. For example, if the elevation is in units of meters and the grid values
+#'   are separated by 10 meters, `zscale` would be 10.
 #' @param filename Character. Optional. Provide a filename to save the output raster on disk.
 #' @param ... further arguments to [rayshader::ray_shade()]
 #'
@@ -12,7 +15,14 @@
 #' @export
 #'
 #' @examples
+#' library(rayshader)
 #' library(terra)
+#' data(montereybay)
+#' height.ras <- rast(montereybay,
+#' crs = attr(montereybay, "crs"),
+#' extent = attr(montereybay, "extent"))
+#' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 11:14, zscale = 200)
+#'
 #' height.ras <- rast(nrows = 10, ncols = 10, xmin = -6, xmax = -5, ymin = 37, ymax = 38,
 #' crs = "epsg:4326", vals = rep(0, 10*10))
 #' height.ras[5,5] <- 8
@@ -20,11 +30,12 @@
 #' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14)
 #' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14, omit.nights = FALSE)
 get_shade_raster <- function(height.ras = NULL,
-                         date = NULL,
-                         hour = NULL,
-                         omit.nights = TRUE,
-                         filename = NULL,
-                         ...) {
+                             zscale = 1,
+                             date = NULL,
+                             hour = NULL,
+                             omit.nights = TRUE,
+                             filename = NULL,
+                             ...) {
 
   # Find raster centre coordinates in lonlat
   lonlat <- find_city_lonlat(height.ras)
