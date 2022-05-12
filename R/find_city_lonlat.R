@@ -26,7 +26,7 @@ find_city_lonlat <- function(ras = NULL) {
   lonlat <- list(lon = terra::xmin(ras.proj), lat = terra::ymin(ras.proj))
 
   stopifnot(is.numeric(lonlat$lon), lonlat$lon > -180, lonlat$lon < 180)
-  stopifnot(is.numeric(lonlat$lat), lonlat$lon > -90, lonlat$lon < 90)
+  stopifnot(is.numeric(lonlat$lat), lonlat$lat > -90, lonlat$lat < 90)
 
   lonlat
 
