@@ -40,3 +40,4 @@ A SpatRaster of light intensities, as produced by \code{\link[rayshader:ray_shad
 \description{
 Calculate shades from elevation map
 }
+\keyword{internal}

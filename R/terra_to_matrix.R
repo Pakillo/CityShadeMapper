@@ -3,7 +3,7 @@
 #' @param ras A [terra::SpatRaster()] object, or a path (character) to a raster file.
 #'
 #' @return A matrix
-#' @export
+#' @keywords internal
 #'
 terra_to_matrix <- function(ras = NULL) {
 
@@ -26,7 +26,7 @@ terra_to_matrix <- function(ras = NULL) {
 #' @param ... Further arguments for [terra::rast()]
 #'
 #' @return A SpatRaster object
-#' @export
+#' @keywords internal
 #'
 
 matrix_to_terra <- function(mat = NULL, crs = "", extent = NULL, ...) {

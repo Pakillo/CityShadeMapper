@@ -15,3 +15,4 @@ A matrix
 \description{
 Convert a SpatRaster to matrix
 }
+\keyword{internal}

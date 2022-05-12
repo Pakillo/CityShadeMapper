@@ -12,7 +12,7 @@
 #' @param ... further arguments to [rayshader::ray_shade()]
 #'
 #' @return A SpatRaster of light intensities, as produced by [rayshader::ray_shade()]
-#' @export
+#' @keywords internal
 #'
 
 calc_shade <- function(height.mat = NULL,

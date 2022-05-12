@@ -21,3 +21,4 @@ A SpatRaster object
 \description{
 Convert a matrix into a SpatRaster
 }
+\keyword{internal}
