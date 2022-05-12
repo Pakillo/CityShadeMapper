@@ -11,6 +11,14 @@
 #' at each pixel for every date and time
 #' @export
 #'
+#' @examples
+#' library(terra)
+#' height.ras <- rast(nrows = 10, ncols = 10, xmin = -6, xmax = -5, ymin = 37, ymax = 38,
+#' crs = "epsg:4326", vals = rep(0, 10*10))
+#' height.ras[5,5] <- 8
+#' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 11:14)
+#' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14)
+#' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14, omit.nights = FALSE)
 get_shade_raster <- function(height.ras = NULL,
                          date = NULL,
                          hour = NULL,

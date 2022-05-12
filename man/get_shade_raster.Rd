@@ -8,6 +8,7 @@ get_shade_raster(
   height.ras = NULL,
   date = NULL,
   hour = NULL,
+  omit.nights = TRUE,
   filename = NULL,
   ...
 )
@@ -15,17 +16,18 @@ get_shade_raster(
 \arguments{
 \item{height.ras}{A \code{\link[terra:SpatRaster-class]{terra::SpatRaster()}} with heights data}
 
+\item{date}{A Date object or character giving the date in YYYY-MM-DD format (e.g. "2021-02-19").
+Can be a vector too, e.g. c("2021-02-19", "2021-08-04").
+Note different years have no effect on sun position calculations.}
+
+\item{hour}{Hour of the day. Integer number (or numeric vector) between 0 and 23 (both included).}
+
+\item{omit.nights}{Logical. If TRUE, sun positions will only be returned when it is daytime
+(i.e. nighttimes will be omitted)}
+
 \item{filename}{Character. Optional. Provide a filename to save the output raster on disk.}
 
-\item{...}{
-  Arguments passed on to \code{\link[=calc_shade]{calc_shade}}
-  \describe{
-    \item{\code{height.mat}}{Height matrix, as calculated by \code{\link[=terra_to_matrix]{terra_to_matrix()}}.}
-    \item{\code{sun.altitude}}{Sun altitude (angle from the horizon, in degrees)}
-    \item{\code{sun.angle}}{Sun angle in degrees (zero degrees is North, increasing clockwise)}
-    \item{\code{crs}}{coordinate reference system, see \code{\link[terra:crs]{terra::crs()}}}
-    \item{\code{extent}}{raster extent, see \code{\link[terra:ext]{terra::ext()}}}
-  }}
+\item{...}{further arguments to \code{\link[rayshader:ray_shade]{rayshader::ray_shade()}}}
 }
 \value{
 A (possibly multilayer) SpatRaster object with the intensity of shading
@@ -33,4 +35,13 @@ at each pixel for every date and time
 }
 \description{
 Get a shade raster for given dates and hours
+}
+\examples{
+library(terra)
+height.ras <- rast(nrows = 10, ncols = 10, xmin = -6, xmax = -5, ymin = 37, ymax = 38,
+crs = "epsg:4326", vals = rep(0, 10*10))
+height.ras[5,5] <- 8
+shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 11:14)
+shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14)
+shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14, omit.nights = FALSE)
 }
