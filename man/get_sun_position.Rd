@@ -4,7 +4,13 @@
 \alias{get_sun_position}
 \title{Get sun position}
 \usage{
-get_sun_position(lon = NULL, lat = NULL, date = NULL, hour = NULL)
+get_sun_position(
+  lon = NULL,
+  lat = NULL,
+  date = NULL,
+  hour = NULL,
+  omit.nights = TRUE
+)
 }
 \arguments{
 \item{lon}{Longitude (numeric value between -180 and 180)}
@@ -16,6 +22,9 @@ Can be a vector too, e.g. c("2021-02-19", "2021-08-04").
 Note different years have no effect on sun position calculations.}
 
 \item{hour}{Hour of the day. Integer number (or numeric vector) between 0 and 23 (both included).}
+
+\item{omit.nights}{Logical. If TRUE, sun positions will only be returned when it is daytime
+(i.e. nighttimes will be omitted)}
 }
 \value{
 A numeric matrix as returned by \code{\link[solartime:computeSunPositionDoyHour]{solartime::computeSunPositionDoyHour()}},

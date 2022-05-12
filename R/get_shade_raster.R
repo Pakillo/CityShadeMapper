@@ -3,8 +3,9 @@
 #' Get a shade raster for given dates and hours
 #'
 #' @param height.ras A [terra::SpatRaster()] with heights data
-#' @inheritParams calc_shade
-#' @inheritDotParams calc_shade
+#' @inheritParams get_sun_position
+#' @param filename Character. Optional. Provide a filename to save the output raster on disk.
+#' @param ... further arguments to [rayshader::ray_shade()]
 #'
 #' @return A (possibly multilayer) SpatRaster object with the intensity of shading
 #' at each pixel for every date and time
@@ -13,6 +14,7 @@
 get_shade_raster <- function(height.ras = NULL,
                          date = NULL,
                          hour = NULL,
+                         omit.nights = TRUE,
                          filename = NULL,
                          ...) {
 
@@ -22,7 +24,8 @@ get_shade_raster <- function(height.ras = NULL,
   sunpos <- get_sun_position(lon = lonlat$lon,
                              lat = lonlat$lat,
                              date = date,
-                             hour = hour)
+                             hour = hour,
+                             omit.nights = omit.nights)
 
   height.mat <- terra_to_matrix(height.ras)
 
