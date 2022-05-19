@@ -38,6 +38,8 @@ Una vez tengamos el mapa de sombras/insolación de detalle se pueden hacer mucha
 
 - Relacionarlo con medidas de temperatura de Landsat
 
+- Diseñar rutas de sombra para ir de un sitio a otro
+
 etc
 
 
