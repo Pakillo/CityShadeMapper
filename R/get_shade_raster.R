@@ -2,7 +2,8 @@
 #'
 #' Get a shade raster for given dates and hours
 #'
-#' @param height.ras A [terra::SpatRaster()] with heights data
+#' @param height.ras A [terra::SpatRaster()] with heights data.
+#' Note `height.ras` must have a well defined `crs` (see [terra::crs()]).
 #' @inheritParams get_sun_position
 #' @param zscale Default `1`. The ratio between the x and y spacing (which are assumed to be equal)
 #'  and the z axis. For example, if the elevation is in units of meters and the grid values
@@ -18,10 +19,11 @@
 #' library(rayshader)
 #' library(terra)
 #' data(montereybay)
-#' height.ras <- rast(montereybay,
+#' height.ras <- rast(t(montereybay),
 #' crs = attr(montereybay, "crs"),
 #' extent = attr(montereybay, "extent"))
 #' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 11:14, zscale = 200)
+#' plot(shaderas, col = rev(colorRampPalette(RColorBrewer::brewer.pal(9, "Greys"))(20)))
 #'
 #' height.ras <- rast(nrows = 10, ncols = 10, xmin = -6, xmax = -5, ymin = 37, ymax = 38,
 #' crs = "epsg:4326", vals = rep(0, 10*10))
@@ -36,6 +38,10 @@ get_shade_raster <- function(height.ras = NULL,
                              omit.nights = TRUE,
                              filename = NULL,
                              ...) {
+
+  if (terra::crs(height.ras) == "") {
+    stop("height.ras must have a Coordinate Reference System (crs) defined. See ?terra::crs\n")
+  }
 
   # Find raster centre coordinates in lonlat
   lonlat <- find_city_lonlat(height.ras)
