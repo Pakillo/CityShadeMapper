@@ -1,22 +1,25 @@
-#' #' Read LiDAR data
+#' Read LiDAR data
 #'
-#' @param path Copiado de lidr: The path of a folder containing a set of las/laz files. Can also be a vector of file paths.
-#' @param filter Filter options of LiDAR data point class classification. By default it is established the filter of noisy data.
+#' @param folder Character. Path to folder containing las/laz files.
+#' Can also be a vector of file paths.
+#' @param filter Character. Optional. Use if you want to filter out some data points.
+#' For LiDAR data from Spain's PNOA, we recommend filtering out noisy data points (class = 7).
+#' @param ... Further arguments for [lidR::readLAScatalog()].
 #'
 #' @return LAScatalog object with LiDAR data
 #' @export
 #'
-#' @examples
 #'
-#'
-read_lidar <- function(path = NULL,
-                       filter= "-drop_class 7",
+read_lidar <- function(folder = NULL,
+                       filter = "-drop_class 7",
                        ...) {
-  laz <- lidR::readLAScatalog(patch = patch,
-                              filter = filter)
+
+  lidR::readLAScatalog(folder = folder,
+                       filter = filter,
+                       ...)
 
 }
 
 
-laz <- readLAScatalog("C:/Users/Jesus/Documents", filter = "-drop_class 7")
+
 
