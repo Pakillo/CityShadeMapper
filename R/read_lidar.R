@@ -18,5 +18,3 @@ read_lidar <- function(path = NULL,
 }
 
 
-laz <- readLAScatalog("C:/Users/Jesus/Documents", filter = "-drop_class 7")
-

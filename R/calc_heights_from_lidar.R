@@ -1,8 +1,8 @@
 #' Calculate height LiDAR
 #'
-#' @param las Lidar data
+#' @param las Lidar data as LAS or LAScatalog from lidR package format
 #' @param res Resolution of the raster height
-#' @param thresholds
+#' @param thresholds Set of height thresholds (see lidR package for more information)
 #' @param ... further arguments to [lidR::pitfree()]
 #' @return SpatRaster object with height LiDAR data
 #' @export
