@@ -22,4 +22,3 @@ read_lidar <- function(folder = NULL,
 
 
 
-
