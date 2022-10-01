@@ -2,16 +2,22 @@
 % Please edit documentation in R/read_lidar.R
 \name{read_lidar}
 \alias{read_lidar}
-\title{Title}
+\title{Read LiDAR data}
 \usage{
-read_lidar(path = NULL)
+read_lidar(folder = NULL, filter = "-drop_class 7", ...)
 }
 \arguments{
-\item{path}{}
+\item{folder}{Character. Path to folder containing las/laz files.
+Can also be a vector of file paths.}
+
+\item{filter}{Character. Optional. Use if you want to filter out some data points.
+For LiDAR data from Spain's PNOA, we recommend filtering out noisy data points (class = 7).}
+
+\item{...}{Further arguments for \code{\link[lidR:readLAScatalog]{lidR::readLAScatalog()}}.}
 }
 \value{
-
+LAScatalog object with LiDAR data
 }
 \description{
-Title
+Read LiDAR data
 }

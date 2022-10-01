@@ -9,9 +9,6 @@ calc_shaded_route(origin = NULL, destination = NULL, date = NULL, time = NULL)
 \arguments{
 \item{time}{}
 }
-\value{
-
-}
 \description{
 Title
 }

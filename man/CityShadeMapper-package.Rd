@@ -4,12 +4,17 @@
 \name{CityShadeMapper-package}
 \alias{CityShadeMapper}
 \alias{CityShadeMapper-package}
-\title{CityShadeMapper: What the Package Does (One Line, Title Case)}
+\title{CityShadeMapper: Generate high resolution shade maps and shaded routes from remote sensing data.}
 \description{
-What the package does (one paragraph).
+CityShadeMapper can generate high resolution shade maps (e.g. for every square meter and every hour of the year) for any city or town from open remote sensing (LiDAR) data. CityShadeMapper can also return optimal routes within any two points in the city that maximise the amount of shade for pedestrians.
 }
 \author{
 \strong{Maintainer}: Francisco Rodríguez-Sánchez \email{f.rodriguez.sanc@gmail.com} (\href{https://orcid.org/0000-0002-7981-1599}{ORCID})
+
+Authors:
+\itemize{
+  \item Jesús Sánchez-Dávila
+}
 
 }
 \keyword{internal}

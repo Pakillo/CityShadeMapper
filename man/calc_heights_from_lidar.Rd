@@ -2,16 +2,27 @@
 % Please edit documentation in R/calc_heights_from_lidar.R
 \name{calc_heights_from_lidar}
 \alias{calc_heights_from_lidar}
-\title{Title}
+\title{Calculate height LiDAR}
 \usage{
-calc_heights_from_lidar(lidar.data = NULL, ...)
+calc_heights_from_lidar(
+  las = NULL,
+  res = 1,
+  thresholds = c(0, 2, 5, 10, 20),
+  ...
+)
 }
 \arguments{
-\item{variables}{}
+\item{las}{Lidar data as LAS or LAScatalog from lidR package format}
+
+\item{res}{Resolution of the raster height}
+
+\item{thresholds}{Set of height thresholds (see lidR package for more information)}
+
+\item{...}{further arguments to \code{\link[lidR:dsm_pitfree]{lidR::pitfree()}}}
 }
 \value{
-
+SpatRaster object with height LiDAR data
 }
 \description{
-Title
+Calculate height LiDAR
 }

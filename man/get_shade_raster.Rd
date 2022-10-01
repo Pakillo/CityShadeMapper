@@ -15,7 +15,8 @@ get_shade_raster(
 )
 }
 \arguments{
-\item{height.ras}{A \code{\link[terra:SpatRaster-class]{terra::SpatRaster()}} with heights data}
+\item{height.ras}{A \code{\link[terra:SpatRaster-class]{terra::SpatRaster()}} with heights data.
+Note \code{height.ras} must have a well defined \code{crs} (see \code{\link[terra:crs]{terra::crs()}}).}
 
 \item{zscale}{Default \code{1}. The ratio between the x and y spacing (which are assumed to be equal)
 and the z axis. For example, if the elevation is in units of meters and the grid values
@@ -45,10 +46,11 @@ Get a shade raster for given dates and hours
 library(rayshader)
 library(terra)
 data(montereybay)
-height.ras <- rast(montereybay,
+height.ras <- rast(t(montereybay),
 crs = attr(montereybay, "crs"),
 extent = attr(montereybay, "extent"))
 shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 11:14, zscale = 200)
+plot(shaderas, col = rev(colorRampPalette(RColorBrewer::brewer.pal(9, "Greys"))(20)))
 
 height.ras <- rast(nrows = 10, ncols = 10, xmin = -6, xmax = -5, ymin = 37, ymax = 38,
 crs = "epsg:4326", vals = rep(0, 10*10))

@@ -27,7 +27,8 @@ Note different years have no effect on sun position calculations.}
 (i.e. nighttimes will be omitted)}
 }
 \value{
-A numeric matrix as returned by \code{\link[solartime:computeSunPositionDoyHour]{solartime::computeSunPositionDoyHour()}},
+A data frame with solar elevation and azimuth per hour
+as returned by \code{\link[solartime:computeSunPositionDoyHour]{solartime::computeSunPositionDoyHour()}}
 but converted to degrees rather than radians.
 }
 \description{
