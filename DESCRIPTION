@@ -1,11 +1,13 @@
 Package: CityShadeMapper
 Title: Generate high resolution shade maps and shaded routes from remote sensing data.
 Version: 0.0.0.9000
-Authors@R: 
-    c(person("Francisco", "Rodríguez-Sánchez", , "f.rodriguez.sanc@gmail.com", 
+Authors@R: c(
+    person("Francisco", "Rodríguez-Sánchez", 
+      email = "f.rodriguez.sanc@gmail.com", 
       role = c("aut", "cre"),
-            comment = c(ORCID = "0000-0002-7981-1599")),
-      person("Jesús", "Sánchez-Dávila", , role = c("aut"))
+      comment = c(ORCID = "0000-0002-7981-1599")),
+    person("Jesús", "Sánchez-Dávila", role = c("aut"))
+  )
 Description: CityShadeMapper can generate high resolution shade maps 
     (e.g. for every square meter and every hour of the year) for any city or town 
     from open remote sensing (LiDAR) data. 
@@ -14,9 +16,11 @@ Description: CityShadeMapper can generate high resolution shade maps
 License: AGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+LazyData: true
+RoxygenNote: 7.2.1
 Imports: 
     dplyr,
+    lidR,
     lubridate,
     lutz,
     solartime,
