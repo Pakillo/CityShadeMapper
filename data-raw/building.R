@@ -8,5 +8,4 @@ building <- CityShadeMapper:::matrix_to_terra(hmat,
                                                  crs = "epsg:25830",
                                                  extent = c(230000, 230009, 4141250, 4141259))
 
-
-save(building, file = "data/building.rda")
+terra::writeRaster(building, filename = "inst/extdata/building.tif")

@@ -14,4 +14,4 @@ square <- CityShadeMapper:::matrix_to_terra(hmat,
                                             extent = c(230000, 230100, 4141250, 4141350))
 
 
-save(square, file = "data/square.rda")
+terra::writeRaster(square, filename = "inst/extdata/square.tif")

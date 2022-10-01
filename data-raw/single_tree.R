@@ -6,4 +6,4 @@ single_tree <- CityShadeMapper:::matrix_to_terra(hmat,
                                                  extent = c(230000, 230009, 4141250, 4141259))
 
 
-save(single_tree, file = "data/single_tree.rda")
+terra::writeRaster(single_tree, filename = "inst/extdata/single_tree.tif")
