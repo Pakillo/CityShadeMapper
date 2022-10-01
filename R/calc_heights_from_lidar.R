@@ -22,9 +22,22 @@ calc_heights_from_lidar <- function(las = NULL,
   }
   stopifnot(is.numeric(thresholds), length(thresholds) > 1)
 
-  dsm_height <- lidR::rasterize_canopy(las = las,
-                                       res = res,
-                                       lidR::pitfree(thresholds, ...))
+  height_canopy <- lidR::rasterize_canopy(
+    las = las,
+    res = res,
+    lidR::pitfree(thresholds, ...)
+    )
+
+  height_ground <- lidR::rasterize_terrain(
+    las = las,
+    res = res
+  )
+
+  height_diff <- height_canopy - height_ground
+  is_ground <- height_diff < 1
+
+  heights <- c(height_canopy, height_ground, is_ground)
+
 
 }
 
