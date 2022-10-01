@@ -74,12 +74,15 @@ get_sun_position <- function(lon = NULL,
     isCorrectSolartime = TRUE
   )
 
-  sunpos.deg <- apply(subset(sunpos.rad,
+  sunpos.deg <- apply(subset(sunpos.rad,  # omitting declination
                              select = c("elevation", "azimuth")),
                   MARGIN = c(1, 2),
                   FUN = rad2deg)
 
-  sunpos.deg <- cbind(dates.hours, hour.solar = sunpos.rad[, "hour"], sunpos.deg)
+  sunpos.deg <- cbind(dates.hours,
+                      hour.solar = round(sunpos.rad[, "hour"], digits = 2),
+                      elevation = round(sunpos.deg[, "elevation"], digits = 2),
+                      azimuth = round(sunpos.deg[, "azimuth"], digits = 2))
 
   sunpos.deg
 
