@@ -9,4 +9,4 @@ building <- CityShadeMapper:::matrix_to_terra(hmat,
                                                  extent = c(230000, 230009, 4141250, 4141259))
 
 
-saveRDS(building, file = "data/building.rds")
+save(building, file = "data/building.rda")
