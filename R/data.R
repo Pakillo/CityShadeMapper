@@ -33,3 +33,19 @@ example_square <- function() {
   terra::rast(system.file("extdata", "square.tif", package = "CityShadeMapper",
                           mustWork = TRUE))
 }
+
+
+
+#' Plaza Nueva LiDAR data
+#'
+#' LiDAR data of Plaza Nueva in Sevilla, Spain.
+#' Data provided by LiDAR-PNOA 2018 CC-BY 4.0 scne.es.
+#'
+#' @export
+#' @return A LAScatalog.
+PlazaNueva <- function() {
+  read_lidar(system.file("extdata", "PlazaNueva.laz", package = "CityShadeMapper",
+                          mustWork = TRUE))
+}
+
+

@@ -8,6 +8,12 @@
 #'
 #' @return LAScatalog object with LiDAR data
 #' @export
+#' @examples
+#' \dontrun{
+#' lidar.file <- system.file("extdata", "PlazaNueva.laz",
+#' package = "CityShadeMapper", mustWork = TRUE)
+#' lidar <- read_lidar(lidar.file)
+#' }
 #'
 #'
 read_lidar <- function(folder = NULL,

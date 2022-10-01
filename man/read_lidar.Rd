@@ -21,3 +21,12 @@ LAScatalog object with LiDAR data
 \description{
 Read LiDAR data
 }
+\examples{
+\dontrun{
+lidar.file <- system.file("extdata", "PlazaNueva.laz",
+package = "CityShadeMapper", mustWork = TRUE)
+lidar <- read_lidar(lidar.file)
+}
+
+
+}
