@@ -11,7 +11,8 @@
 #' @param omit.nights Logical. If TRUE, sun positions will only be returned when it is daytime
 #' (i.e. nighttimes will be omitted)
 #'
-#' @return A numeric matrix as returned by [solartime::computeSunPositionDoyHour()],
+#' @return A data frame with solar elevation and azimuth per hour
+#' as returned by [solartime::computeSunPositionDoyHour()]
 #' but converted to degrees rather than radians.
 #' @export
 #'
