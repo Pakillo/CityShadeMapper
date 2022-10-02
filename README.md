@@ -4,6 +4,8 @@
 # CityShadeMap
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/Pakillo/CityShadeMap/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Pakillo/CityShadeMap/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Idea inicial: básicamente empezar por fabricar un **mapa de

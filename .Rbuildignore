@@ -10,3 +10,4 @@ CityShadeMap_data
 scripts
 
 ^LICENSE\.md$
+^\.github$
