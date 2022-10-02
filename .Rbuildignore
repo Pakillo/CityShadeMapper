@@ -11,3 +11,4 @@ scripts
 
 ^LICENSE\.md$
 ^\.github$
+^codecov\.yml$

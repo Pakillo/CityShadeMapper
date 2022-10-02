@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/Pakillo/CityShadeMap/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Pakillo/CityShadeMap/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/Pakillo/CityShadeMap/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/CityShadeMap?branch=master)
 <!-- badges: end -->
 
 Idea inicial: básicamente empezar por fabricar un **mapa de
