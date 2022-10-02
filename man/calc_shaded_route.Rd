@@ -2,13 +2,19 @@
 % Please edit documentation in R/calc_shaded_route.R
 \name{calc_shaded_route}
 \alias{calc_shaded_route}
-\title{Title}
+\title{Calculate shaded route}
 \usage{
 calc_shaded_route(origin = NULL, destination = NULL, date = NULL, time = NULL)
 }
 \arguments{
-\item{time}{}
+\item{origin}{origin coordinates.}
+
+\item{destination}{destination coordinates.}
+
+\item{date}{Character. Date in YYYY-MM-DD format.}
+
+\item{time}{Numeric. Hour in local time.}
 }
 \description{
-Title
+Calculate shaded route
 }

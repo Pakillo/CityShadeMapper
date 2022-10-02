@@ -26,3 +26,12 @@ SpatRaster object with height LiDAR data
 \description{
 Calculate height LiDAR
 }
+\examples{
+\dontrun{
+lidar.file <- system.file("extdata", "PlazaNueva.laz",
+package = "CityShadeMapper", mustWork = TRUE)
+lidar <- read_lidar(lidar.file)
+heights <- calc_heights_from_lidar(lidar)
+}
+
+}

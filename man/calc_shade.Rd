@@ -40,4 +40,19 @@ A SpatRaster of light intensities, as produced by \code{\link[rayshader:ray_shad
 \description{
 Calculate shades from elevation map
 }
+\examples{
+\dontrun{
+lidar.file <- system.file("extdata", "PlazaNueva.laz",
+package = "CityShadeMapper", mustWork = TRUE)
+lidar <- read_lidar(lidar.file)
+heights <- calc_heights_from_lidar(lidar)
+library(terra)
+height.mat <- CityShadeMapper:::terra_to_matrix(subset(heights, 1))
+sun.pos <- get_sun_position(lon = -5.99567, lat = 37.38876, date = "2022-10-18", hour = 15)
+shaderas <- calc_shade(height.mat, sun.altitude = sun.pos$elevation,
+sun.angle = sun.pos$azimuth,
+crs = crs(heights), extent = ext(heights))
+plot_shademap(shaderas)
+}
+}
 \keyword{internal}
