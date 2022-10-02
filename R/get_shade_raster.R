@@ -17,26 +17,21 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(rayshader)
-#' library(terra)
-#' data(montereybay)
-#' height.ras <- rast(t(montereybay),
-#' crs = attr(montereybay, "crs"),
-#' extent = attr(montereybay, "extent"))
-#' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 11:14, zscale = 200)
-#' plot(shaderas, col = rev(colorRampPalette(RColorBrewer::brewer.pal(9, "Greys"))(20)))
-#'
-#' height.ras <- rast(nrows = 10, ncols = 10, xmin = -6, xmax = -5, ymin = 37, ymax = 38,
-#' crs = "epsg:4326", vals = rep(0, 10*10))
-#' height.ras[5,5] <- 8
-#' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 11:14)
-#' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14)
-#' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14, omit.nights = FALSE)
+#' lidar <- PlazaNueva()
+#' heights <- calc_heights_from_lidar(lidar)
+#' shaderas <- get_shade_raster(heights, date = "2022-10-15", hour = 13)
+#' plot_shademap(shaderas, smooth = TRUE)
+#' shaderas <- get_shade_raster(heights, date = "2022-10-15", hour = 8:20)
+#' plot_shademap(shaderas, animate = TRUE, smooth = TRUE)
+#' shaderas <- get_shade_raster(heights, date = "2022-07-15", hour = 8:21)
+#' plot_shademap(shaderas, animate = TRUE, smooth = TRUE)
+#' shaderas <- get_shade_raster(heights, date = c("2022-07-15", "2022-10-15"), hour = 13)
+#' plot_shademap(shaderas, legend = FALSE)
 #' }
 get_shade_raster <- function(height.ras = NULL,
-                             zscale = 1,
                              date = NULL,
                              hour = NULL,
+                             zscale = 1,
                              omit.nights = TRUE,
                              filename = NULL,
                              ...) {
@@ -54,7 +49,7 @@ get_shade_raster <- function(height.ras = NULL,
                              hour = hour,
                              omit.nights = omit.nights)
 
-  height.mat <- terra_to_matrix(height.ras)
+  height.mat <- terra_to_matrix(terra::subset(height.ras, 1))
 
   ## Calculate shade raster for every date and hour
   # producing list of SpatRaster, then joining into single SpatRaster
