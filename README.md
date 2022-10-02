@@ -8,6 +8,9 @@
 [![R-CMD-check](https://github.com/Pakillo/CityShadeMap/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Pakillo/CityShadeMap/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/Pakillo/CityShadeMap/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Pakillo/CityShadeMap?branch=master)
+[![Project Status: WIP – Initial development is in progress, but there
+has not yet been a stable, usable release suitable for the
+public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 <!-- badges: end -->
 
 Idea inicial: básicamente empezar por fabricar un **mapa de
