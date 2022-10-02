@@ -16,6 +16,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(rayshader)
 #' library(terra)
 #' data(montereybay)
@@ -31,6 +32,7 @@
 #' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 11:14)
 #' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14)
 #' shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14, omit.nights = FALSE)
+#' }
 get_shade_raster <- function(height.ras = NULL,
                              zscale = 1,
                              date = NULL,

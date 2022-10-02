@@ -13,7 +13,7 @@ plot_shademap <- function(shade.ras = NULL, legend = TRUE, animate = FALSE, ...)
   if (animate) {
 
     terra::animate(shade.ras,
-                   col = rev(colorRampPalette(RColorBrewer::brewer.pal(9, "Greys"))(20)),
+                   col = rev(grDevices::colorRampPalette(RColorBrewer::brewer.pal(9, "Greys"))(20)),
                    axes = FALSE,
                    legend = legend,
                    ...)
@@ -21,7 +21,7 @@ plot_shademap <- function(shade.ras = NULL, legend = TRUE, animate = FALSE, ...)
   } else {
 
     terra::plot(shade.ras,
-                col = rev(colorRampPalette(RColorBrewer::brewer.pal(9, "Greys"))(20)),
+                col = rev(grDevices::colorRampPalette(RColorBrewer::brewer.pal(9, "Greys"))(20)),
                 axes = FALSE,
                 legend = legend,
                 ...)

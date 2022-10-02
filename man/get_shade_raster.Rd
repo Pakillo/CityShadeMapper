@@ -43,6 +43,7 @@ at each pixel for every date and time
 Get a shade raster for given dates and hours
 }
 \examples{
+\dontrun{
 library(rayshader)
 library(terra)
 data(montereybay)
@@ -58,4 +59,5 @@ height.ras[5,5] <- 8
 shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 11:14)
 shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14)
 shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14, omit.nights = FALSE)
+}
 }

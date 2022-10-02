@@ -1,9 +1,12 @@
 ^CityShadeMap\.Rproj$
 ^\.Rproj\.user$
+CityShadeMapper.Rproj
 ^README\.Rmd$
 ^data-raw$
 ^makefile\.R$
 playground.R
 other
+CityShadeMap_data
+scripts
 
 ^LICENSE\.md$
