@@ -8,7 +8,12 @@
 #' @export
 #'
 #' @examples
-#'
+#' \dontrun{
+#' lidar.file <- system.file("extdata", "PlazaNueva.laz",
+#' package = "CityShadeMapper", mustWork = TRUE)
+#' lidar <- read_lidar(lidar.file)
+#' heights <- calc_heights_from_lidar(lidar)
+#' }
 #'
 calc_heights_from_lidar <- function(las = NULL,
                                     res = 1,
@@ -37,7 +42,7 @@ calc_heights_from_lidar <- function(las = NULL,
   is_ground <- height_diff < 1
 
   heights <- c(height_canopy, height_ground, is_ground)
-
+  # a SpatRaster with 3 layers
 
 }
 
