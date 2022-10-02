@@ -6,9 +6,9 @@
 \usage{
 get_shade_raster(
   height.ras = NULL,
-  zscale = 1,
   date = NULL,
   hour = NULL,
+  zscale = 1,
   omit.nights = TRUE,
   filename = NULL,
   ...
@@ -18,15 +18,15 @@ get_shade_raster(
 \item{height.ras}{A \code{\link[terra:SpatRaster-class]{terra::SpatRaster()}} with heights data.
 Note \code{height.ras} must have a well defined \code{crs} (see \code{\link[terra:crs]{terra::crs()}}).}
 
-\item{zscale}{Default \code{1}. The ratio between the x and y spacing (which are assumed to be equal)
-and the z axis. For example, if the elevation is in units of meters and the grid values
-are separated by 10 meters, \code{zscale} would be 10.}
-
 \item{date}{A Date object or character giving the date in YYYY-MM-DD format (e.g. "2021-02-19").
 Can be a vector too, e.g. c("2021-02-19", "2021-08-04").
 Note different years have no effect on sun position calculations.}
 
 \item{hour}{Hour of the day. Integer number (or numeric vector) between 0 and 23 (both included).}
+
+\item{zscale}{Default \code{1}. The ratio between the x and y spacing (which are assumed to be equal)
+and the z axis. For example, if the elevation is in units of meters and the grid values
+are separated by 10 meters, \code{zscale} would be 10.}
 
 \item{omit.nights}{Logical. If TRUE, sun positions will only be returned when it is daytime
 (i.e. nighttimes will be omitted)}
@@ -44,20 +44,15 @@ Get a shade raster for given dates and hours
 }
 \examples{
 \dontrun{
-library(rayshader)
-library(terra)
-data(montereybay)
-height.ras <- rast(t(montereybay),
-crs = attr(montereybay, "crs"),
-extent = attr(montereybay, "extent"))
-shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 11:14, zscale = 200)
-plot(shaderas, col = rev(colorRampPalette(RColorBrewer::brewer.pal(9, "Greys"))(20)))
-
-height.ras <- rast(nrows = 10, ncols = 10, xmin = -6, xmax = -5, ymin = 37, ymax = 38,
-crs = "epsg:4326", vals = rep(0, 10*10))
-height.ras[5,5] <- 8
-shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 11:14)
-shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14)
-shaderas <- get_shade_raster(height.ras, date = "2020-01-05", hour = 06:14, omit.nights = FALSE)
+lidar <- PlazaNueva()
+heights <- calc_heights_from_lidar(lidar)
+shaderas <- get_shade_raster(heights, date = "2022-10-15", hour = 13)
+plot_shademap(shaderas, smooth = TRUE)
+shaderas <- get_shade_raster(heights, date = "2022-10-15", hour = 8:20)
+plot_shademap(shaderas, animate = TRUE, smooth = TRUE)
+shaderas <- get_shade_raster(heights, date = "2022-07-15", hour = 8:21)
+plot_shademap(shaderas, animate = TRUE, smooth = TRUE)
+shaderas <- get_shade_raster(heights, date = c("2022-07-15", "2022-10-15"), hour = 13)
+plot_shademap(shaderas, legend = FALSE)
 }
 }

@@ -4,7 +4,7 @@
 \name{CityShadeMapper-package}
 \alias{CityShadeMapper}
 \alias{CityShadeMapper-package}
-\title{CityShadeMapper: Generate high resolution shade maps and shaded routes from remote sensing data}
+\title{CityShadeMapper: Generate High Resolution Shade Maps and Shaded Routes from Remote Sensing Data}
 \description{
 CityShadeMapper can generate high resolution shade maps (e.g. for every square meter and every hour of the year) for any city or town from open remote sensing (LiDAR) data. CityShadeMapper can also return optimal routes within any two points in the city that maximise the amount of shade for pedestrians.
 }
