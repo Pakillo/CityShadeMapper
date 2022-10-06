@@ -11,7 +11,7 @@ read_lidar(folder = NULL, filter = "-drop_class 7", ...)
 Can also be a vector of file paths.}
 
 \item{filter}{Character. Optional. Use if you want to filter out some data points.
-For LiDAR data from Spain's PNOA, we recommend filtering out noisy data points (class = 7).}
+For example, we could filter out noisy data points (class = 7).}
 
 \item{...}{Further arguments for \code{\link[lidR:readLAScatalog]{lidR::readLAScatalog()}}.}
 }

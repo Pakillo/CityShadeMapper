@@ -49,7 +49,7 @@ get_shade_raster <- function(height.ras = NULL,
                              hour = hour,
                              omit.nights = omit.nights)
 
-  height.mat <- terra_to_matrix(terra::subset(height.ras, 1))
+  height.mat <- terra_to_matrix(terra::subset(height.ras, 1))  # remove subset?
 
   ## Calculate shade raster for every date and hour
   # producing list of SpatRaster, then joining into single SpatRaster

@@ -7,7 +7,7 @@
 rasterize_lidar_cover_class(las = NULL, res = 1)
 }
 \arguments{
-\item{las}{A \code{\link[lidR:LAS-class]{lidR::LAS()}} object, as read by \code{\link[lidR:readLAS]{lidR::readLAS()}}.}
+\item{las}{Path to a LAS/LAZ object.}
 
 \item{res}{Resolution of the resulting raster.}
 }
@@ -20,6 +20,8 @@ A SpatRaster with the classification of cover types:
 Rasterize cover classification of lidar points
 }
 \examples{
+\dontrun{
 pza <- PlazaNueva()
 pza.cover <- rasterize_lidar_cover_class(pza)
+}
 }

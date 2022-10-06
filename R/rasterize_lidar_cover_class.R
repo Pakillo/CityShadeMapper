@@ -8,8 +8,10 @@
 #' 3 = vegetation < 1m, 2 = ground.
 #'
 #' @examples
+#' \dontrun{
 #' pza <- PlazaNueva()
 #' pza.cover <- rasterize_lidar_cover_class(pza)
+#' }
 rasterize_lidar_cover_class <- function(las = NULL, res = 1) {
 
   pts <- lidR::readLAS(las, select = "xyc", filter = "-keep_class 2 3 4 5 6 9 17")
