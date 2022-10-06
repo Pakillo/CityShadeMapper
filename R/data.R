@@ -44,7 +44,7 @@ example_square <- function() {
 #' @export
 #' @return A LAScatalog.
 PlazaNueva <- function() {
-  read_lidar(system.file("extdata", "PlazaNueva.laz", package = "CityShadeMapper",
+  lidR::readLAS(system.file("extdata", "PlazaNueva.laz", package = "CityShadeMapper",
                           mustWork = TRUE))
 }
 
