@@ -1,6 +1,7 @@
 test_that("read_lidar works", {
 
-  lidar <- PlazaNueva()
+  lidar <- read_lidar(system.file("extdata", "PlazaNueva.laz",
+                       package = "CityShadeMapper", mustWork = TRUE))
   lidar.ext <- lidR::extent(lidar)
 
   expect_true(inherits(lidar, "LAScatalog"))
