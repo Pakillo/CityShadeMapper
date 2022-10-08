@@ -43,7 +43,7 @@ calc_shade <- function(height.mat = NULL,
                                    zscale = zscale,
                                    ...)
 
-  shademat <- round(shademat, digits = 2)
+  shademat <- round(shademat*100, digits = 0)
 
   shaderas <- matrix_to_terra(t(shademat), crs = crs, extent = extent)
 
