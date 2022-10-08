@@ -2,6 +2,7 @@
 #'
 #' @param las LiDAR data (a [lidR::LAS-class()] or [lidR::LAScatalog-class()] object).
 #' @param res Spatial resolution of the raster
+#' @param ground Logical. Calculate ground height in addition to canopy/roof heights?
 #' @param thresholds Set of height thresholds (see [lidR::dsm_pitfree()]).
 #' @param ... further arguments to [lidR::pitfree()]
 #' @return SpatRaster with height data
@@ -9,14 +10,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' lidar.file <- system.file("extdata", "PlazaNueva.laz",
-#' package = "CityShadeMapper", mustWork = TRUE)
-#' lidar <- read_lidar(lidar.file)
-#' heights <- calc_heights_from_lidar(lidar)
+#' heights <- calc_heights_from_lidar(PlazaNueva())
 #' }
 #'
 calc_heights_from_lidar <- function(las = NULL,
                                     res = 1,
+                                    ground = FALSE,
                                     thresholds = c(0,2,5,10,20),
                                     ...
 ) {
@@ -33,18 +32,27 @@ calc_heights_from_lidar <- function(las = NULL,
     lidR::pitfree(thresholds, ...)  # try different algorithm?
     )
 
+  if (isTRUE(ground)) {
 
+    height_ground <- lidR::rasterize_terrain(
+      las = las,
+      res = res
+    )
 
-  # height_ground <- lidR::rasterize_terrain(
-  #   las = las,
-  #   res = res
-  # )
-  #
-  # height_diff <- height_canopy - height_ground
-  # is_ground <- height_diff < 1
-  #
-  # heights <- c(height_canopy, height_ground, is_ground)
-  # a SpatRaster with 3 layers
+    height_diff <- height_canopy - height_ground
+    is_ground <- height_diff < 1
+
+    heights <- c(height_canopy, height_ground, is_ground)
+    names(heights) <- c("height_canopy", "height_ground", "is_ground")
+    # a SpatRaster with 3 layers
+
+  } else {
+    heights <- height_canopy
+    names(heights) <- "height_canopy"
+  }
+
+  return(heights)
+
 
 }
 
