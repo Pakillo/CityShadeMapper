@@ -2,30 +2,29 @@
 % Please edit documentation in R/rasterize_lidar_cover_class.R
 \name{rasterize_lidar_cover_class}
 \alias{rasterize_lidar_cover_class}
-\title{Rasterize cover classification of lidar points}
+\title{Get raster of cover classification from lidar points}
 \usage{
-rasterize_lidar_cover_class(las.file = NULL, res = 1, group.classes = TRUE)
+rasterize_lidar_cover_class(las = NULL, res = 1, fill.holes = TRUE)
 }
 \arguments{
-\item{las.file}{Path to a LAS/LAZ object.}
+\item{las}{A \code{\link[lidR:LAScatalog-class]{lidR::LAScatalog-class()}} object, or a character vector with
+paths to LAS/LAZ objects.}
 
 \item{res}{Resolution of the resulting raster.}
 
-\item{group.classes}{Logical. Group classes in the output raster?}
+\item{fill.holes}{Logical. Try to fill holes in lidar point classification.}
 }
 \value{
 A SpatRaster with the classification of cover types:
-9 = water, 6 = buildings, 5 = vegetation > 3m, 4 = vegetation between 1 and 3 m high,
-3 = vegetation < 1m, 2 = ground.
-Note that points classified as bridges (class 17) will be reclassified as ground.
-If group.classes is TRUE, the output SpatRaster will only have three values:
 2 = ground (including low vegetation < 1m)
 4 = high vegetation (> 1m)
 6 = buildings
+9 = water
 and NA values.
+Note that points classified as bridges (class 17) will be reclassified as ground.
 }
 \description{
-Rasterize cover classification of lidar points
+Get raster of cover classification from lidar points
 }
 \examples{
 \dontrun{
@@ -33,4 +32,3 @@ pza <- system.file("extdata", "PlazaNueva.laz", package = "CityShadeMapper")
 pza.cover <- rasterize_lidar_cover_class(pza)
 }
 }
-\keyword{internal}

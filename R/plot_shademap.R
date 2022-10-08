@@ -1,6 +1,6 @@
 #' Plot shade map
 #'
-#' @param shade.ras A [terra::SpatRaster()] object with shade intensity, as produced by [get_shade_raster()].
+#' @param shade.ras A [terra::SpatRaster()] object with shade intensity, as produced by [make_shademap()].
 #' @param legend Logical. Show legend?
 #' @param animate Logical. Show animation of all the `shade.ras` layers?
 #' @param ... Further arguments to [terra::plot()], or to [terra::animate()] if `animate` is `TRUE`.

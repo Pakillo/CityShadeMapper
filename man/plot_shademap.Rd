@@ -7,7 +7,7 @@
 plot_shademap(shade.ras = NULL, legend = TRUE, animate = FALSE, ...)
 }
 \arguments{
-\item{shade.ras}{A \code{\link[terra:SpatRaster-class]{terra::SpatRaster()}} object with shade intensity, as produced by \code{\link[=get_shade_raster]{get_shade_raster()}}.}
+\item{shade.ras}{A \code{\link[terra:SpatRaster-class]{terra::SpatRaster()}} object with shade intensity, as produced by \code{\link[=make_shademap]{make_shademap()}}.}
 
 \item{legend}{Logical. Show legend?}
 
