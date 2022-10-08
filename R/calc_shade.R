@@ -43,6 +43,8 @@ calc_shade <- function(height.mat = NULL,
                                    zscale = zscale,
                                    ...)
 
+  shademat <- round(shademat, digits = 2)
+
   shaderas <- matrix_to_terra(t(shademat), crs = crs, extent = extent)
 
   shaderas <- terra::flip(shaderas, direction = "horizontal")
