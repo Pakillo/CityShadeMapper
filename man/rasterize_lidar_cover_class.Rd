@@ -4,24 +4,33 @@
 \alias{rasterize_lidar_cover_class}
 \title{Rasterize cover classification of lidar points}
 \usage{
-rasterize_lidar_cover_class(las = NULL, res = 1)
+rasterize_lidar_cover_class(las.file = NULL, res = 1, group.classes = TRUE)
 }
 \arguments{
-\item{las}{Path to a LAS/LAZ object.}
+\item{las.file}{Path to a LAS/LAZ object.}
 
 \item{res}{Resolution of the resulting raster.}
+
+\item{group.classes}{Logical. Group classes in the output raster?}
 }
 \value{
 A SpatRaster with the classification of cover types:
 9 = water, 6 = buildings, 5 = vegetation > 3m, 4 = vegetation between 1 and 3 m high,
 3 = vegetation < 1m, 2 = ground.
+Note that points classified as bridges (class 17) will be reclassified as ground.
+If group.classes is TRUE, the output SpatRaster will only have three values:
+2 = ground (including low vegetation < 1m)
+4 = high vegetation (> 1m)
+6 = buildings
+and NA values.
 }
 \description{
 Rasterize cover classification of lidar points
 }
 \examples{
 \dontrun{
-pza <- PlazaNueva()
+pza <- system.file("extdata", "PlazaNueva.laz", package = "CityShadeMapper")
 pza.cover <- rasterize_lidar_cover_class(pza)
 }
 }
+\keyword{internal}

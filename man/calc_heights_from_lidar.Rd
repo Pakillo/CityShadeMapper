@@ -7,6 +7,7 @@
 calc_heights_from_lidar(
   las = NULL,
   res = 1,
+  ground = FALSE,
   thresholds = c(0, 2, 5, 10, 20),
   ...
 )
@@ -15,6 +16,8 @@ calc_heights_from_lidar(
 \item{las}{LiDAR data (a \code{\link[lidR:LAS-class]{lidR::LAS-class()}} or \code{\link[lidR:LAScatalog-class]{lidR::LAScatalog-class()}} object).}
 
 \item{res}{Spatial resolution of the raster}
+
+\item{ground}{Logical. Calculate ground height in addition to canopy/roof heights?}
 
 \item{thresholds}{Set of height thresholds (see \code{\link[lidR:dsm_pitfree]{lidR::dsm_pitfree()}}).}
 
@@ -28,10 +31,7 @@ Generate height raster from LiDAR data
 }
 \examples{
 \dontrun{
-lidar.file <- system.file("extdata", "PlazaNueva.laz",
-package = "CityShadeMapper", mustWork = TRUE)
-lidar <- read_lidar(lidar.file)
-heights <- calc_heights_from_lidar(lidar)
+heights <- calc_heights_from_lidar(PlazaNueva())
 }
 
 }

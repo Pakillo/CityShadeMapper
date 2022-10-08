@@ -4,14 +4,19 @@
 \alias{read_lidar}
 \title{Read LiDAR data}
 \usage{
-read_lidar(folder = NULL, filter = "-drop_class 7", ...)
+read_lidar(folder = NULL, select = "xyz", filter = "-drop_class 7", ...)
 }
 \arguments{
 \item{folder}{Character. Path to folder containing las/laz files.
 Can also be a vector of file paths.}
 
+\item{select}{Character. Point attributes to read from the las/laz files.
+Use \code{select = "*"} to read all attributes. Default is "xyz" to save memory.
+See \code{\link[lidR:readLAS]{lidR::readLAS()}} for more details.}
+
 \item{filter}{Character. Optional. Use if you want to filter out some data points.
-For example, we could filter out noisy data points (class = 7).}
+For example, we could filter out noisy data points (class = 7) using
+\code{filter = "-drop_class 7"}. Use \code{filter = ""} to read all data points.}
 
 \item{...}{Further arguments for \code{\link[lidR:readLAScatalog]{lidR::readLAScatalog()}}.}
 }
@@ -23,9 +28,8 @@ Read LiDAR data
 }
 \examples{
 \dontrun{
-lidar.file <- system.file("extdata", "PlazaNueva.laz",
-package = "CityShadeMapper", mustWork = TRUE)
-lidar <- read_lidar(lidar.file)
+las <- system.file("extdata", "PlazaNueva.laz", package = "CityShadeMapper")
+lidar <- read_lidar(las)
 }
 
 
