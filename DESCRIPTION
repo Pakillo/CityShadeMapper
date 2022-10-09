@@ -20,6 +20,9 @@ LazyData: true
 RoxygenNote: 7.2.1
 Imports: 
     dplyr,
+    leafem,
+    leaflet,
+    leaflet.extras,
     lidR,
     lubridate,
     lutz,

@@ -4,7 +4,12 @@
 \alias{rasterize_lidar_cover_class}
 \title{Get raster of cover classification from lidar points}
 \usage{
-rasterize_lidar_cover_class(las = NULL, res = 1, fill.holes = TRUE)
+rasterize_lidar_cover_class(
+  las = NULL,
+  res = 1,
+  fill.holes = TRUE,
+  filename = NULL
+)
 }
 \arguments{
 \item{las}{A \code{\link[lidR:LAScatalog-class]{lidR::LAScatalog-class()}} object, or a character vector with
@@ -13,6 +18,9 @@ paths to LAS/LAZ objects.}
 \item{res}{Resolution of the resulting raster.}
 
 \item{fill.holes}{Logical. Try to fill holes in lidar point classification.}
+
+\item{filename}{Character. Output filename. Note that if a file already exists
+with that name, it will be overwritten.}
 }
 \value{
 A SpatRaster with the classification of cover types:

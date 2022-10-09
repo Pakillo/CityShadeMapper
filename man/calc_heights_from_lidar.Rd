@@ -9,6 +9,7 @@ calc_heights_from_lidar(
   res = 1,
   ground = FALSE,
   thresholds = c(0, 2, 5, 10, 20),
+  filename = NULL,
   ...
 )
 }
@@ -20,6 +21,9 @@ calc_heights_from_lidar(
 \item{ground}{Logical. Calculate ground height in addition to canopy/roof heights?}
 
 \item{thresholds}{Set of height thresholds (see \code{\link[lidR:dsm_pitfree]{lidR::dsm_pitfree()}}).}
+
+\item{filename}{Character. Output filename. Note that if a file already exists
+with that name, it will be overwritten.}
 
 \item{...}{further arguments to \code{\link[lidR:dsm_pitfree]{lidR::pitfree()}}}
 }

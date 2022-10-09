@@ -13,7 +13,7 @@
 #' }
 leaflet_shademap <- function(url = NULL, orthoimages = FALSE) {
 
-  lfmap <- leaflet::leaflet(options = leafletOptions(minZoom = 12, maxZoom = 18)) |>
+  lfmap <- leaflet::leaflet(options = leaflet::leafletOptions(minZoom = 12, maxZoom = 18)) |>
     leaflet::addWMSTiles(baseUrl = "https://www.ign.es/wms-inspire/ign-base",
                          layers = "IGNBaseTodo-nofondo",
                          attribution = "Mapa base: CC BY 4.0 scne.es",

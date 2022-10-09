@@ -39,7 +39,8 @@ are separated by 10 meters, \code{zscale} would be 10.}
 \item{omit.nights}{Logical. If TRUE, sun positions will only be returned when it is daytime
 (i.e. nighttimes will be omitted)}
 
-\item{filename}{Character. Optional. Provide a filename to save the output raster on disk.}
+\item{filename}{Character. Output filename. Note that if a file already exists
+with that name, it will be overwritten.}
 
 \item{...}{further arguments to \code{\link[rayshader:ray_shade]{rayshader::ray_shade()}}}
 }

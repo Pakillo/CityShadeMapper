@@ -4,7 +4,7 @@
 \alias{make_shademap_ground}
 \title{Calculate shade map at the ground level}
 \usage{
-make_shademap_ground(shademap.canopy = NULL, cover.ras = NULL)
+make_shademap_ground(shademap.canopy = NULL, cover.ras = NULL, filename = NULL)
 }
 \arguments{
 \item{shademap.canopy}{A SpatRaster with the illumination at the canopy level,
@@ -12,6 +12,9 @@ made with \code{\link[=make_shademap]{make_shademap()}}.}
 
 \item{cover.ras}{A SpatRaster containing cover classes (ground, vegetation, buildings...).
 See \code{\link[=rasterize_lidar_cover_class]{rasterize_lidar_cover_class()}}.}
+
+\item{filename}{Character. Output filename. Note that if a file already exists
+with that name, it will be overwritten.}
 }
 \value{
 A (possibly multilayer) SpatRaster object with the intensity of illumination
