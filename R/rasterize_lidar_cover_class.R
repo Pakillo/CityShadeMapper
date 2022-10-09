@@ -4,6 +4,8 @@
 #' paths to LAS/LAZ objects.
 #' @param res Resolution of the resulting raster.
 #' @param fill.holes Logical. Try to fill holes in lidar point classification.
+#' @param filename Character. Output filename. Note that if a file already exists
+#' with that name, it will be overwritten.
 #'
 #' @return A SpatRaster with the classification of cover types:
 #' 2 = ground (including low vegetation < 1m)
@@ -19,7 +21,10 @@
 #' pza <- system.file("extdata", "PlazaNueva.laz", package = "CityShadeMapper")
 #' pza.cover <- rasterize_lidar_cover_class(pza)
 #' }
-rasterize_lidar_cover_class <- function(las = NULL, res = 1, fill.holes = TRUE) {
+rasterize_lidar_cover_class <- function(las = NULL,
+                                        res = 1,
+                                        fill.holes = TRUE,
+                                        filename = NULL) {
 
   pts <- lidR::readLAS(las, select = "xyc", filter = "-keep_class 2 3 4 5 6 9 17")
   #table(pts$Classification)
@@ -35,6 +40,11 @@ rasterize_lidar_cover_class <- function(las = NULL, res = 1, fill.holes = TRUE) 
 
   if (isTRUE(fill.holes)) {
     pts.class <- fill_holes(pts.class)
+  }
+
+  if (!is.null(filename)) {
+    terra::writeRaster(pts.class, filename = filename, overwrite = TRUE, datatype = "INT1U")
+    pts.class <- terra::rast(filename)
   }
 
   pts.class

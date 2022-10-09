@@ -4,7 +4,10 @@
 #' @param res Spatial resolution of the raster
 #' @param ground Logical. Calculate ground height in addition to canopy/roof heights?
 #' @param thresholds Set of height thresholds (see [lidR::dsm_pitfree()]).
+#' @param filename Character. Output filename. Note that if a file already exists
+#' with that name, it will be overwritten.
 #' @param ... further arguments to [lidR::pitfree()]
+#'
 #' @return SpatRaster with height data
 #' @export
 #'
@@ -17,8 +20,8 @@ calc_heights_from_lidar <- function(las = NULL,
                                     res = 1,
                                     ground = FALSE,
                                     thresholds = c(0,2,5,10,20),
-                                    ...
-) {
+                                    filename = NULL,
+                                    ...) {
   stopifnot(class(las) == "LAS" | class(las) == "LAScatalog")
   stopifnot(is.numeric(res) | class(res) == "SpatRaster" )
   if (is.numeric(res)) {
@@ -50,6 +53,12 @@ calc_heights_from_lidar <- function(las = NULL,
     heights <- height_canopy
     names(heights) <- "height_canopy"
   }
+
+  if (!is.null(filename)) {
+    terra::writeRaster(heights, filename = filename, overwrite = TRUE)
+    heights <- terra::rast(filename)
+  }
+
 
   return(heights)
 

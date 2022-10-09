@@ -50,7 +50,7 @@ calc_shade <- function(height.mat = NULL,
   shaderas <- terra::flip(shaderas, direction = "horizontal")
 
   if (!is.null(filename)) {
-    terra::writeRaster(shaderas, filename = filename)
+    terra::writeRaster(shaderas, filename = filename, datatype = "INT1U")
     shaderas <- terra::rast(filename)
   }
 

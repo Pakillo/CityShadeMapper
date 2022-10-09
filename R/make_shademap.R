@@ -12,7 +12,8 @@
 #' @param zscale Default `1`. The ratio between the x and y spacing (which are assumed to be equal)
 #'  and the z axis. For example, if the elevation is in units of meters and the grid values
 #'   are separated by 10 meters, `zscale` would be 10.
-#' @param filename Character. Optional. Provide a filename to save the output raster on disk.
+#' @param filename Character. Output filename. Note that if a file already exists
+#' with that name, it will be overwritten.
 #' @param ... further arguments to [rayshader::ray_shade()]
 #'
 #' @return A (possibly multilayer) SpatRaster object with the intensity of illumination
@@ -54,12 +55,20 @@ make_shademap <- function(height.ras = NULL,
                                    hour = hour,
                                    zscale = zscale,
                                    omit.nights = omit.nights,
-                                   filename = filename,
+                                   filename = NULL,
                                    ...)
+
+  type <- match.arg(type)
 
   if (type == "ground") {
     shademap <- make_shademap_ground(shademap.canopy = shademap,
-                                     cover.ras = cover.ras)
+                                     cover.ras = cover.ras,
+                                     filename = NULL)
+  }
+
+  if (!is.null(filename)) {
+    terra::writeRaster(shademap, filename = filename, overwrite = TRUE, datatype = "INT1U")
+    shademap <- terra::rast(filename)
   }
 
   shademap
@@ -120,7 +129,7 @@ make_shademap_canopy <- function(height.ras = NULL,
   }
 
   if (!is.null(filename)) {
-    terra::writeRaster(shaderas, filename = filename)
+    terra::writeRaster(shaderas, filename = filename, overwrite = TRUE, datatype = "INT1U")
     shaderas <- terra::rast(filename)
   }
 
@@ -135,6 +144,8 @@ make_shademap_canopy <- function(height.ras = NULL,
 #' made with [make_shademap()].
 #' @param cover.ras A SpatRaster containing cover classes (ground, vegetation, buildings...).
 #' See [rasterize_lidar_cover_class()].
+#' @param filename Character. Output filename. Note that if a file already exists
+#' with that name, it will be overwritten.
 #'
 #' @return A (possibly multilayer) SpatRaster object with the intensity of illumination
 #' at the ground level
@@ -153,10 +164,11 @@ make_shademap_canopy <- function(height.ras = NULL,
 #'   type = "ground", cover.ras = cover.ras)
 #' }
 make_shademap_ground <- function(shademap.canopy = NULL,
-                                 cover.ras = NULL) {
+                                 cover.ras = NULL,
+                                 filename = NULL) {
 
   if (is.null(cover.ras)) stop("cover.ras is required.")
-  if (!unique(terra::values(cover.ras)) %in% c(2, 4, 6, 9, NA))
+  if (!all(unique(terra::values(cover.ras)) %in% c(2, 4, 6, 9, NA)))
     stop("Allowed values for 'cover.ras' are only 2, 4, 6, 9, or NA.")
 
   # Set buildings as NA
@@ -165,9 +177,12 @@ make_shademap_ground <- function(shademap.canopy = NULL,
   shademap.canopy[cover.ras == 9] <- NA
 
   # Reassign values under vegetation
-  shademap.canopy[cover.ras == 4] <- 0.055
-  # fixed value by now, with 3 decimal digits, so these pixels can be easily
-  # identified (all other pixels have two decimal digits)
+  shademap.canopy[cover.ras == 4] <- 55  # fixed value by now
+
+  if (!is.null(filename)) {
+    terra::writeRaster(shademap.canopy, filename = filename, overwrite = TRUE, datatype = "INT1U")
+    shademap.canopy <- terra::rast(filename)
+  }
 
   shademap.canopy
 
