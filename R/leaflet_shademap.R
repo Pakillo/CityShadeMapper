@@ -2,7 +2,9 @@
 #'
 #' @param url Character. Url pointing to a cloud-optimised geotiff
 #' (starting with 'https://'). The COG raster must have EPSG:4326 projection.
+#' @param band Numeric. Band to show in multilayer rasters.
 #' @param orthoimages Logical. Add orthoimage layer to the map?
+#' @param opacity Numeric between 0 and 1. Opacity of the shade layer.
 #'
 #' @return A leaflet map
 #' @export
@@ -11,7 +13,10 @@
 #' \dontrun{
 #' leaflet_shademap(url = "https://www.dropbox.com/s/e6l434gmj9v0bpk/cog.tif?dl=1")
 #' }
-leaflet_shademap <- function(url = NULL, orthoimages = FALSE) {
+leaflet_shademap <- function(url = NULL,
+                             band = 1,
+                             orthoimages = FALSE,
+                             opacity = 0.2) {
 
   lfmap <- leaflet::leaflet(options = leaflet::leafletOptions(minZoom = 12, maxZoom = 18)) |>
     leaflet::addWMSTiles(baseUrl = "https://www.ign.es/wms-inspire/ign-base",
@@ -35,7 +40,8 @@ leaflet_shademap <- function(url = NULL, orthoimages = FALSE) {
                        project = FALSE,
                        group = "Sombra",
                        # resolution = 300,
-                       opacity = 0.2,
+                       bands = band,
+                       opacity = opacity,
                        colorOptions = leafem::colorOptions(
                          palette = grDevices::colorRampPalette(
                            rev(RColorBrewer::brewer.pal(9, "Greys")))(20),
