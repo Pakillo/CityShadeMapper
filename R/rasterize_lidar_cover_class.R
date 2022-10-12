@@ -36,15 +36,21 @@ rasterize_lidar_cover_class <- function(las = NULL,
   # join classes 4 & 5 (vegetation > 1m high)
   pts$Classification[pts$Classification == 5] <- as.integer(4)
 
-  pts.class <- lidR::pixel_metrics(pts, func = max.class(Classification), res = res)
-
-  if (isTRUE(fill.holes)) {
-    pts.class <- fill_holes(pts.class)
-  }
+  pts.class <- lidR::pixel_metrics(pts,
+                                   func = CityShadeMapper:::max.class(Classification),
+                                   res = res)
 
   if (!is.null(filename)) {
     terra::writeRaster(pts.class, filename = filename, overwrite = TRUE, datatype = "INT1U")
     pts.class <- terra::rast(filename)
+  }
+
+  if (isTRUE(fill.holes)) {
+    pts.class <- fill_holes(pts.class)
+    if (!is.null(filename)) {
+      terra::writeRaster(pts.class, filename = filename, overwrite = TRUE, datatype = "INT1U")
+      pts.class <- terra::rast(filename)
+    }
   }
 
   pts.class
