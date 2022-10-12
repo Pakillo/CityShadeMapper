@@ -4,13 +4,29 @@
 \alias{leaflet_shademap}
 \title{Make leaflet shade map}
 \usage{
-leaflet_shademap(url = NULL, orthoimages = FALSE)
+leaflet_shademap(
+  url.canopy = NULL,
+  url.ground = NULL,
+  url.cog = NULL,
+  band = 1,
+  satellite = FALSE,
+  opacity = 0.5
+)
 }
 \arguments{
-\item{url}{Character. Url pointing to a cloud-optimised geotiff
-(starting with 'https://'). The COG raster must have EPSG:4326 projection.}
+\item{url.canopy}{Character. Url pointing to shade tiles at the canopy level.}
 
-\item{orthoimages}{Logical. Add orthoimage layer to the map?}
+\item{url.ground}{Character. Url pointing to shade tiles at the ground level.}
+
+\item{url.cog}{Character. Url pointing to a cloud-optimised geotiff
+(starting with 'https://'). The COG raster must have EPSG:4326 projection.
+Currently not implemented.}
+
+\item{band}{Numeric. Band to show in multilayer rasters (only for COG).}
+
+\item{satellite}{Logical. Add satellite images as another layer to the map?}
+
+\item{opacity}{Numeric between 0 and 1. Opacity of the shade layer.}
 }
 \value{
 A leaflet map
@@ -20,6 +36,6 @@ Make leaflet shade map
 }
 \examples{
 \dontrun{
-leaflet_shademap(url = "https://www.dropbox.com/s/e6l434gmj9v0bpk/cog.tif?dl=1")
+leaflet_shademap(url.canopy = "https://mapasdesombra.github.io/prueba/tiles/{z}/{x}/{y}.png")
 }
 }
