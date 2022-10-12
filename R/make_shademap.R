@@ -168,8 +168,8 @@ make_shademap_ground <- function(shademap.canopy = NULL,
                                  filename = NULL) {
 
   if (is.null(cover.ras)) stop("cover.ras is required.")
-  if (!all(unique(terra::values(cover.ras)) %in% c(2, 4, 6, 9, NA)))
-    stop("Allowed values for 'cover.ras' are only 2, 4, 6, 9, or NA.")
+  if (!all(unique(terra::values(cover.ras)) %in% c(2, 4, 6, 9, NA, NaN)))
+    stop("Allowed values for 'cover.ras' are only 2, 4, 6, 9, NaN or NA.")
 
   # Set buildings as NA
   shademap.canopy[cover.ras == 6] <- NA
@@ -177,7 +177,7 @@ make_shademap_ground <- function(shademap.canopy = NULL,
   shademap.canopy[cover.ras == 9] <- NA
 
   # Reassign values under vegetation
-  shademap.canopy[cover.ras == 4] <- 55  # fixed value by now
+  shademap.canopy[cover.ras == 4] <- 05  # fixed value by now
 
   if (!is.null(filename)) {
     terra::writeRaster(shademap.canopy, filename = filename, overwrite = TRUE, datatype = "INT1U")
