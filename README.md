@@ -20,7 +20,7 @@ insolation or shade maps from remote sensing
 now available for many countries
 (e.g. [Spain](https://pnoa.ign.es/el-proyecto-pnoa-lidar)). Shade maps
 can be generated for every hour of the year and every square meter of
-entire cities (e.g. see <https://mapasdesombra.org>).
+entire cities (e.g. see <https://www.mapasdesombra.org>).
 
 ## Installation
 
@@ -51,7 +51,7 @@ plot_shademap(shade, legend = FALSE, animate = TRUE, smooth = TRUE)
 
 ![](man/figures/catedral_abril.gif)
 
-See <https://mapasdesombra.org> for a more developed application of
+See <https://www.mapasdesombra.org> for a more developed application of
 shade maps at both the canopy and ground level for Sevilla city in
 southern Spain.
 
@@ -77,3 +77,26 @@ illumination) value. If there is information available about vegetation
 type, density, etc, it could be used to refine the calculation of shade
 intensities below tree canopies, i.e. at the ground level. Illumination
 calculations at the canopy/roof level is unaffected by this.
+
+## Citation
+
+Please cite `CityShadeMapper` whenever you use it:
+
+``` r
+citation("CityShadeMapper")
+
+To cite CityShadeMapper use:
+
+  Francisco Rodríguez-Sánchez & Jesús Sánchez-Dávila. CityShadeMapper:
+  Generate High Resolution Shade Maps and Shaded Routes from Remote
+  Sensing Data. https://pakillo.github.io/CityShadeMapper
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {CityShadeMapper: Generate High Resolution Shade Maps and Shaded Routes from Remote Sensing Data},
+    author = {Francisco Rodríguez-Sánchez and Jesús Sánchez-Dávila},
+    year = {2022},
+    url = {https://pakillo.github.io/CityShadeMapper},
+  }
+```
