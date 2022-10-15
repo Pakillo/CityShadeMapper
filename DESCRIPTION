@@ -27,7 +27,8 @@ Imports:
     RColorBrewer,
     solartime,
     rayshader,
-    terra
+    terra,
+    magrittr
 Suggests: 
     covr,
     testthat (>= 3.0.0)

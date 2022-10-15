@@ -29,15 +29,15 @@ leaflet_shademap <- function(url.canopy = NULL,
   if (!is.null(url.cog)) stop("COG currently not implemented")
   stopifnot(opacity >= 0 & opacity <= 1)
 
-  lfmap <- leaflet::leaflet(options = leaflet::leafletOptions(minZoom = 15, maxZoom = 18)) |>
-    leaflet::setView(lng = -5.99311, lat = 37.38599, zoom = 17) |>
+  lfmap <- leaflet::leaflet(options = leaflet::leafletOptions(minZoom = 15, maxZoom = 18)) %>%
+    leaflet::setView(lng = -5.99311, lat = 37.38599, zoom = 17) %>%
     leaflet::addWMSTiles(baseUrl = "https://www.ign.es/wms-inspire/ign-base",
                          layers = "IGNBaseTodo-nofondo",
                          attribution = "Mapa base: CC BY 4.0 scne.es",
                          group = "Callejero")
 
   if (isTRUE(satellite)) {
-    lfmap <- lfmap |>
+    lfmap <- lfmap %>%
       leaflet::addWMSTiles(baseUrl = "https://www.ign.es/wms-inspire/pnoa-ma",
                            layers = "OI.OrthoimageCoverage",
                            group = "Ortofotos")
@@ -53,7 +53,7 @@ leaflet_shademap <- function(url.canopy = NULL,
     } else {
       shade.group = "Sombra"
     }
-    lfmap <- lfmap |>
+    lfmap <- lfmap %>%
       leaflet::addTiles(urlTemplate = url.canopy,
                         options = leaflet::tileOptions(minZoom = 15, maxZoom = 18,
                                                        tms = TRUE, opacity = opacity),
@@ -63,12 +63,12 @@ leaflet_shademap <- function(url.canopy = NULL,
   if (!is.null(url.ground)) {
     if (!is.null(url.canopy)) {
       shade.group = "Suelo"
-      lfmap <- lfmap |>
+      lfmap <- lfmap %>%
         leaflet::hideGroup("Suelo")
     } else {
       shade.group = "Sombra"
     }
-    lfmap <- lfmap |>
+    lfmap <- lfmap %>%
       leaflet::addTiles(urlTemplate = url.ground,
                         options = leaflet::tileOptions(minZoom = 15, maxZoom = 18,
                                                        tms = TRUE, opacity = opacity),
@@ -82,11 +82,11 @@ leaflet_shademap <- function(url.canopy = NULL,
   }
 
 
-  lfmap |>
+  lfmap %>%
     leaflet::addLayersControl(baseGroups = basemaps,
                               overlayGroups = shademaps,
                               options = leaflet::layersControlOptions(collapsed = FALSE,
-                                                                      autoZIndex = TRUE)) |>
+                                                                      autoZIndex = TRUE)) %>%
     leaflet.extras::addSearchOSM()
 
 
@@ -106,4 +106,4 @@ leaflet_shademap <- function(url.canopy = NULL,
 #                      palette = grDevices::colorRampPalette(
 #                        rev(RColorBrewer::brewer.pal(9, "Greys")))(20),
 #                      na.color = "#bebebe22")
-# ) |>
+# ) %>%
