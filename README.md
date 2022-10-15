@@ -32,7 +32,7 @@ remotes::install_github("Pakillo/CityShadeMapper")
 ## Usage
 
 An example using LiDAR data from Sevilla, Spain (provided by
-[IGN]((https://pnoa.ign.es/el-proyecto-pnoa-lidar)):
+[IGN](https://pnoa.ign.es/el-proyecto-pnoa-lidar)):
 
 ``` r
 library("CityShadeMapper")
@@ -57,13 +57,18 @@ southern Spain.
 
 ## How it works
 
-CityShadeMapper builds upon wonderful open source packages (e.g. lidR,
-solartime, rayshader, terra, etc) that make it possible. CityShadeMapper
-uses the LiDAR cloud points to build a height map of the city. From the
-height raster, and knowing the sun position at every time of year given
-the geographic coordinates of the city, CityShadeMapper calculates the
-amount of solar rays hitting every pixel of the surface (either at the
-roof/canopy or the ground level).
+CityShadeMapper builds upon wonderful open source packages
+(e.g. [lidR](https://github.com/r-lidar/lidR),
+[solartime](https://cran.r-project.org/package=solartime),
+[rayshader](https://www.rayshader.com/),
+[terra](https://rspatial.github.io/terra/index.html),
+[GDAL](https://gdal.org/), etc) that make it possible. CityShadeMapper
+uses the LiDAR point cloud to build a detailed height map of the city,
+including trees and buildings. From this height information, and knowing
+the sun position at every time of year given the geographic coordinates
+of the city, CityShadeMapper calculates the amount of solar rays hitting
+every pixel of the surface (either at the roof/canopy or the ground
+level).
 
 ## Limitations
 
