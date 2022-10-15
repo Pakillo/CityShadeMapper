@@ -67,7 +67,7 @@ Shade intensity under tree canopies is currently fixed at a low (5% illumination
 
 ## Citation
 
-Please cite `CityShadeMapper` whenever you use it:
+If you found `CityShadeMapper` useful we'd love to know. Please do [get in touch](mailto:f.rodriguez.sanc@gmail.com). And please cite `CityShadeMapper` whenever you use it:
 
 ```{r comment=NA}
 citation("CityShadeMapper")

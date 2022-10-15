@@ -80,7 +80,9 @@ calculations at the canopy/roof level is unaffected by this.
 
 ## Citation
 
-Please cite `CityShadeMapper` whenever you use it:
+If you found `CityShadeMapper` useful we’d love to know. Please do [get
+in touch](mailto:f.rodriguez.sanc@gmail.com). And please cite
+`CityShadeMapper` whenever you use it:
 
 ``` r
 citation("CityShadeMapper")
