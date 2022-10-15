@@ -19,7 +19,6 @@ Roxygen: list(markdown = TRUE)
 LazyData: true
 RoxygenNote: 7.2.1
 Imports: 
-    leafem,
     leaflet,
     leaflet.extras,
     lidR,
