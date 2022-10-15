@@ -19,7 +19,7 @@ test_that("get_sun_position returns correct output", {
                    hour.solar = c(8.36, 8.36, 10.36, 7.5, 9.5, 9.5),
                    elevation = c(19, 19, 35.58, 28.14, 51.53, 51.53),
                    azimuth = c(122.53, 122.53, 150, 89.01, 110.98, 110.98)),
-              class = "data.frame", row.names = c(NA, 6L))
+              class = "data.frame", row.names = as.integer(c(1, 3, 5, 2, 4, 6)))
   )
 
   # omit nights = TRUE
@@ -41,7 +41,7 @@ test_that("get_sun_position returns correct output", {
                    hour.solar = c(4.36, 5.36, 6.36, 7.36, 8.36),
                    elevation = c(-26.64, -14.73, -2.95, 8.41, 19),
                    azimuth = c(84.67, 93.87, 102.74, 112.05, 122.53)),
-              class = "data.frame", row.names = c(NA, -5L))
+              class = "data.frame", row.names = 1:5)
   )
 
 })

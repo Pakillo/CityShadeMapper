@@ -41,7 +41,8 @@ get_sun_position <- function(lon = NULL,
   if (length(date) > 1 | length(hour) > 1) {
 
     dates.hours <- expand.grid(date = date, hour = hour, stringsAsFactors = FALSE)
-    dates.hours <- dplyr::arrange(dates.hours, date, hour)
+    # dates.hours <- dplyr::arrange(dates.hours, date, hour)
+    dates.hours <- dates.hours[order(dates.hours$date, dates.hours$hour), , drop = FALSE]
 
   } else {
 
