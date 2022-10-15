@@ -3,22 +3,38 @@
 
 project_raster <- function(ras = NULL,
                            proj = c("geo", "leaflet"),
+                           epsg = NULL,
+                           res = NULL,
+                           method = c("near", "bilinear"),
                            filename = NULL) {
 
-  proj <- match.arg(proj)
-
-  if (proj == "geo") epsg = "epsg:4326"
-  if (proj == "leaflet") epsg = "epsg:3857"
+  # if epsg provided, use it (over proj arg)
+  if (!is.null(epsg)) {
+    epsg = paste0("epsg:", epsg)
+  } else {
+    proj <- match.arg(proj)
+    if (proj == "geo") epsg = "epsg:4326"
+    if (proj == "leaflet") epsg = "epsg:3857"
+  }
 
   new.ext <- terra::ext(terra::project(terra::as.polygons(terra::ext(ras),
                                                           crs = terra::crs(ras)),
                                        y = epsg))
-  template <- terra::rast(nrows = terra::nrow(ras),
-                          ncols = terra::ncol(ras),
-                          crs = epsg,
-                          extent = new.ext)
 
-  ras.proj <- terra::project(ras, template)
+  if (!is.null(res)) {
+    template <- terra::rast(resolution = res,
+                            crs = epsg,
+                            extent = new.ext)
+  } else {
+    template <- terra::rast(nrows = terra::nrow(ras),
+                            ncols = terra::ncol(ras),
+                            crs = epsg,
+                            extent = new.ext)
+  }
+
+
+  method = match.arg(method)
+  ras.proj <- terra::project(ras, template, method = method)
   ras.proj <- round(ras.proj)
 
   if (!is.null(filename)) {
