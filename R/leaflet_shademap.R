@@ -48,19 +48,31 @@ leaflet_shademap <- function(url.canopy = NULL,
   }
 
   if (!is.null(url.canopy)) {
+    if (!is.null(url.ground)) {
+      shade.group = "Tejados"
+    } else {
+      shade.group = "Sombra"
+    }
     lfmap <- lfmap |>
       leaflet::addTiles(urlTemplate = url.canopy,
                         options = leaflet::tileOptions(minZoom = 15, maxZoom = 18,
                                                        tms = TRUE, opacity = opacity),
-                        group = "Sombra")
+                        group = shade.group)
   }
 
   if (!is.null(url.ground)) {
+    if (!is.null(url.canopy)) {
+      shade.group = "Suelo"
+      lfmap <- lfmap |>
+        leaflet::hideGroup("Suelo")
+    } else {
+      shade.group = "Sombra"
+    }
     lfmap <- lfmap |>
       leaflet::addTiles(urlTemplate = url.ground,
                         options = leaflet::tileOptions(minZoom = 15, maxZoom = 18,
                                                        tms = TRUE, opacity = opacity),
-                        group = "Sombra")
+                        group = shade.group)
   }
 
   if (!is.null(url.canopy) & !is.null(url.ground)) {
@@ -74,8 +86,9 @@ leaflet_shademap <- function(url.canopy = NULL,
     leaflet::addLayersControl(baseGroups = basemaps,
                               overlayGroups = shademaps,
                               options = leaflet::layersControlOptions(collapsed = FALSE,
-                                                                      autoZIndex = FALSE)) |>
+                                                                      autoZIndex = TRUE)) |>
     leaflet.extras::addSearchOSM()
+
 
 
 }
