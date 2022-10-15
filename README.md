@@ -13,53 +13,62 @@ has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 <!-- badges: end -->
 
-Idea inicial: básicamente empezar por fabricar un **mapa de
-sombras/insolación horario para todo el año de alta resolución**
-teniendo en cuenta el relieve de edificios y tal vez árboles. Para ello
-podría usarse datos lidar (del PNOA o de la
-[REDIAM](https://www.juntadeandalucia.es/medioambiente/portal/landing-page-%C3%ADndice/-/asset_publisher/zX2ouZa4r1Rf/content/cobertura-lidar/20151)),
-o probar los datos de edificios que tiene OpenStreetMap
-(<https://osmbuildings.org/?lat=37.38863&lon=-5.99534&zoom=16.0&tilt=30>).
+CityShadeMapper is an open source [R
+package](https://www.r-project.org/) that generates high-resolution
+insolation or shade maps from remote sensing
+([LiDAR](https://en.wikipedia.org/wiki/Lidar)) data. Free LiDAR data are
+now available for many countries
+(e.g. [Spain](https://pnoa.ign.es/el-proyecto-pnoa-lidar)). Shade maps
+can be generated for every hour of the year and every square meter of
+entire cities (e.g. see <https://mapasdesombra.org>).
 
-Hay aplicaciones parecidas, p ej
+## Installation
 
-<https://shademap.app/@40.4163,-3.6934,10z,1643369189777t,0b,0p>
+``` r
+# install.packages("remotes")
+remotes::install_github("Pakillo/CityShadeMapper")
+```
 
-<https://shadowmap.org/>
+## Usage
 
-<https://www.huellasolar.com/>
+An example using LiDAR data from Sevilla, Spain (provided by
+[IGN]((https://pnoa.ign.es/el-proyecto-pnoa-lidar)):
 
-Pero nada Open Source que yo conozca. La idea es generar a la vez (1) un
-paquete de R open source para que cualquiera pueda analizar su ciudad y
-(2) un análisis detallado de la ciudad de Sevilla.
+``` r
+library("CityShadeMapper")
 
-Una vez tengamos el mapa de sombras/insolación de detalle se pueden
-hacer muchas cosas, p ej
+# Read LiDAR data
+lidar <- read_lidar(system.file("extdata", "catedral.laz", package = "CityShadeMapper"))
 
--   Analizar, calle a calle o barrio a barrio, las zonas más expuestas
-    al sol en verano, o menos en invierno
+# Calculate heights from LiDAR data
+heights <- calc_heights_from_lidar(lidar)
 
--   Analizar dónde el arbolado está o podría amortiguar más el exceso de
-    calor (incluso a nivel de especie, tipo de hoja etc, ya que existe
-    un mapa detallado del arbolado:
-    <https://www.arbomap.com/arbomapciudadano/accesos/sevilla/>)
+# Calculate shade maps for 30 April (all day)
+shade <- make_shademap(heights, date = "2022-04-30", hour = 8:21)
 
--   Relacionarlo con medidas de temperatura de Landsat
+plot_shademap(shade, legend = FALSE, animate = TRUE, smooth = TRUE)
+```
 
--   Diseñar rutas de sombra para ir de un sitio a otro
+![](man/figures/catedral_abril.gif)
 
-etc
+See <https://mapasdesombra.org> for a more developed application of
+shade maps at both the canopy and ground level for Sevilla city in
+southern Spain.
 
-## Papers relacionados
+## How it works
 
-<https://doi.org/10.3390/rs11202348>
+CityShadeMapper builds upon wonderful open source packages (e.g. lidR,
+solartime, rayshader, terra, etc) that make it possible. CityShadeMapper
+uses the LiDAR cloud points to build a height map of the city. From the
+height raster, and knowing the sun position at every time of year given
+the geographic coordinates of the city, CityShadeMapper calculates the
+amount of solar rays hitting every pixel of the surface (either at the
+roof/canopy or the ground level).
 
-<https://doi.org/10.1016/j.scs.2019.101931>
+## Limitations
 
-<https://www.sciencedirect.com/science/article/abs/pii/S0169204617301950>
-
-<https://doi.org/10.1016/j.ufug.2018.02.013>
-
-<https://doi.org/10.1016/j.jag.2020.102161>
-
-<https://doi.org/10.1016/j.compenvurbsys.2021.101655>
+Shade intensity under tree canopies is currently fixed at a low (5%
+illumination) value. If there is information available about vegetation
+type, density, etc, it could be used to refine the calculation of shade
+intensities below tree canopies, i.e. at the ground level. Illumination
+calculations at the canopy/roof level is unaffected by this.

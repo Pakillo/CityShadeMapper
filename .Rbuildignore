@@ -12,3 +12,4 @@ scripts
 ^LICENSE\.md$
 ^\.github$
 ^codecov\.yml$
+man/figures
