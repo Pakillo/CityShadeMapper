@@ -49,7 +49,8 @@ movepoints2nearestcell <- function(locs = NULL,
     }
 
   } else {
-    message("All points fall within a raster cell")
+    # message("All points fall within a raster cell")
+    locs.new <- locs
   }
 
   return(locs.new)
