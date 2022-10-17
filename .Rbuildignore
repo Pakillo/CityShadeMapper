@@ -15,3 +15,6 @@ scripts
 man/figures
 Sevilla
 logo
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

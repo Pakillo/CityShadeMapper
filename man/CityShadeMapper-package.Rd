@@ -8,6 +8,13 @@
 \description{
 CityShadeMapper can generate high resolution shade maps (e.g. for every square meter and every hour of the year) for any city or town from open remote sensing (LiDAR) data. CityShadeMapper can also return optimal routes within any two points in the city that maximise the amount of shade for pedestrians.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://pakillo.github.io/CityShadeMapper/}
+}
+
+}
 \author{
 \strong{Maintainer}: Francisco Rodríguez-Sánchez \email{f.rodriguez.sanc@gmail.com} (\href{https://orcid.org/0000-0002-7981-1599}{ORCID})
 
