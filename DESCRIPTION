@@ -19,16 +19,20 @@ Roxygen: list(markdown = TRUE)
 LazyData: true
 RoxygenNote: 7.2.1
 Imports: 
+    class,
+    gdistance,
     leaflet,
     leaflet.extras,
     lidR,
     lubridate,
     lutz,
+    magrittr,
+    nominatimlite,
+    raster,
     RColorBrewer,
     solartime,
     rayshader,
-    terra,
-    magrittr
+    terra
 Suggests: 
     covr,
     testthat (>= 3.0.0)
