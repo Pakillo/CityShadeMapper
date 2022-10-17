@@ -36,6 +36,6 @@ Make leaflet shade map
 }
 \examples{
 \dontrun{
-leaflet_shademap(url.canopy = "https://mapasdesombra.github.io/prueba/tiles/{z}/{x}/{y}.png")
+leaflet_shademap(url.canopy = "https://mapasdesombra.github.io/Sevilla-jul-canopy/11/{z}/{x}/{y}.png")
 }
 }
