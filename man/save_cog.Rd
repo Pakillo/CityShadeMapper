@@ -7,13 +7,14 @@
 save_cog(ras = NULL, filename = NULL)
 }
 \arguments{
-\item{ras}{A shade raster as produced by \code{\link[=make_shademap]{make_shademap()}}.}
+\item{ras}{A SpatRaster (e.g. a shade raster as produced by \code{\link[=make_shademap]{make_shademap()}}).}
 
-\item{filename}{Character. Output filename.}
+\item{filename}{Character. Output filename. Must end with '.tif' extension.}
 }
 \value{
 A cloud optimised geotiff saved on disk.
 }
 \description{
-Save raster as Cloud Optimised GeoTiff
+Requires GDAL >= 3.1
 }
+\keyword{internal}

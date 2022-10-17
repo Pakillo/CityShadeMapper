@@ -6,16 +6,14 @@
 #' @param locs A point `sf` object.
 #' @param ras A SpatRaster.
 #' @param layer Integer. For multilayer rasters, which layer to use.
-#' @param move Logical. Change coordinates of points to those of the nearest raster cells?
 #' @return A sf object (with corrected coordinates if move is TRUE).
 #' @keywords internal
 
 
 movepoints2nearestcell <- function(locs = NULL,
-                               ras = NULL,
-                               layer = 1,
-                               move = TRUE
-                               ) {
+                                   ras = NULL,
+                                   layer = 1
+) {
 
   if (!inherits(locs, "SpatVector")) locs <- terra::vect(locs)
 
@@ -41,11 +39,13 @@ movepoints2nearestcell <- function(locs = NULL,
                               crs = terra::crs(locs))
     terra::values(new.coords) <- terra::values(locs[miss, ])
 
-    if (isTRUE(move)) {   # assign new coordinates to those points
+    if (terra::nrow(locs) > 1) {   # assign new coordinates to those points
       # locs.new <- locs
       # locs.new[miss, ] <- new.coords
       locs.new <- rbind(locs[!miss], new.coords)
       # TO DO: return same order as original locs
+    } else {
+      locs.new = new.coords
     }
 
   } else {
@@ -79,10 +79,10 @@ point_in_cell <- function(locs = NULL, ras = NULL, layer = 1){
 
   if (!inherits(locs, "SpatVector")) locs <- terra::vect(locs)
 
-    if (terra::nlyr(ras) > 1) ras <- terra::subset(ras, layer)
-    ## Get NA cells
-    rasvals <- terra::extract(ras, locs, ID = FALSE)
-    missing <- is.na(rasvals)
-    missing
+  if (terra::nlyr(ras) > 1) ras <- terra::subset(ras, layer)
+  ## Get NA cells
+  rasvals <- terra::extract(ras, locs, ID = FALSE)
+  missing <- is.na(rasvals)
+  missing
 
 }

@@ -4,16 +4,17 @@
 \alias{calc_shaded_route}
 \title{Calculate shaded route}
 \usage{
-calc_shaded_route(origin = NULL, destination = NULL, date = NULL, time = NULL)
+calc_shaded_route(origin = NULL, dest = NULL, shaderas = NULL)
 }
 \arguments{
 \item{origin}{origin coordinates.}
 
+\item{shaderas}{Shade raster}
+
 \item{destination}{destination coordinates.}
-
-\item{date}{Character. Date in YYYY-MM-DD format.}
-
-\item{time}{Numeric. Hour in local time.}
+}
+\value{
+A SpatVector object with the optimal route
 }
 \description{
 Calculate shaded route
