@@ -21,7 +21,7 @@ insolation or shade maps from remote sensing
 now available for many countries
 (e.g. [Spain](https://pnoa.ign.es/el-proyecto-pnoa-lidar)). Shade maps
 can be generated for every hour of the year and every square meter of
-entire cities.
+entire cities (e.g. see <https://www.mapasdesombra.org>).
 
 ## Installation
 
@@ -52,7 +52,9 @@ plot_shademap(shade, legend = FALSE, animate = TRUE, smooth = TRUE)
 
 ![](man/figures/catedral_abril.gif)
 
-<!-- See https://www.mapasdesombra.org for a more developed application of shade maps at both the canopy and ground level for Sevilla city in southern Spain. -->
+See <https://www.mapasdesombra.org> for a more developed application of
+shade maps at both the canopy and ground level for Sevilla city in
+southern Spain.
 
 ## How it works
 
