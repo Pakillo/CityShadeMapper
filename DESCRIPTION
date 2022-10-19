@@ -38,3 +38,4 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://pakillo.github.io/CityShadeMapper/
+BugReports: https://github.com/Pakillo/CityShadeMapper/issues
