@@ -12,6 +12,7 @@ coverage](https://codecov.io/gh/Pakillo/CityShadeMapper/branch/master/graph/badg
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![HitCount](https://hits.dwyl.com/Pakillo/CityShadeMapper.svg?style=flat-square)](http://hits.dwyl.com/Pakillo/CityShadeMapper)
+[![HitCount](https://hits.dwyl.com/Pakillo/CityShadeMapper.svg?style=flat-square&show=unique)](http://hits.dwyl.com/Pakillo/CityShadeMapper)
 <!-- badges: end -->
 
 CityShadeMapper is an open source [R
