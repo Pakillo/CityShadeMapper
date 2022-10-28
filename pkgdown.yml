@@ -1,8 +1,8 @@
-pandoc: 2.14.2
+pandoc: 2.19.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-10-19T21:15Z
+last_built: 2022-10-28T18:38Z
 urls:
   reference: https://pakillo.github.io/CityShadeMapper/reference
   article: https://pakillo.github.io/CityShadeMapper/articles
