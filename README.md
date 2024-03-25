@@ -88,7 +88,6 @@ in touch](mailto:f.rodriguez.sanc@gmail.com). And please cite
 
 ``` r
 citation("CityShadeMapper")
-
 To cite CityShadeMapper use:
 
   Francisco Rodríguez-Sánchez & Jesús Sánchez-Dávila. CityShadeMapper:
@@ -104,3 +103,12 @@ A BibTeX entry for LaTeX users is
     url = {https://pakillo.github.io/CityShadeMapper},
   }
 ```
+
+## Funding
+
+The development of this software has been funded by Fondo Europeo de
+Desarrollo Regional (FEDER) and Consejería de Transformación Económica,
+Industria, Conocimiento y Universidades of Junta de Andalucía (proyecto
+US-1381388 led by Francisco Rodríguez Sánchez, Universidad de Sevilla).
+
+![](man/figures/feder.png)
