@@ -12,6 +12,7 @@ CityShadeMapper can generate high resolution shade maps (e.g. for every square m
 Useful links:
 \itemize{
   \item \url{https://pakillo.github.io/CityShadeMapper/}
+  \item Report bugs at \url{https://github.com/Pakillo/CityShadeMapper/issues}
 }
 
 }

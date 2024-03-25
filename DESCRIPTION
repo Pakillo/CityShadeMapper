@@ -17,7 +17,7 @@ License: AGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 LazyData: true
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.1
 Imports: 
     class,
     gdistance,
