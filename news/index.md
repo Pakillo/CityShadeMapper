@@ -1,5 +1,11 @@
 # Changelog
 
+## CityShadeMapper 0.0.3
+
+- Fixed bug with raster resolutions different to 1 meter
+  ([\#17](https://github.com/Pakillo/CityShadeMapper/issues/17)). Thanks
+  [@Jean-Romain](https://github.com/Jean-Romain)
+
 ## CityShadeMapper 0.0.2
 
 - Added new logical argument `low.veg.as.ground` to
