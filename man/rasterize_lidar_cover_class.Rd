@@ -8,6 +8,7 @@ rasterize_lidar_cover_class(
   las = NULL,
   res = 1,
   fill.holes = TRUE,
+  low.veg.as.ground = TRUE,
   filename = NULL
 )
 }
@@ -18,6 +19,10 @@ paths to LAS/LAZ objects.}
 \item{res}{Resolution of the resulting raster.}
 
 \item{fill.holes}{Logical. Try to fill holes in lidar point classification.}
+
+\item{low.veg.as.ground}{Logical. Classify low vegetation (<1 m high) as ground?
+Default is TRUE. If FALSE, low vegetation will be grouped together with medium
+and high vegetation.}
 
 \item{filename}{Character. Output filename. Note that if a file already exists
 with that name, it will be overwritten.}

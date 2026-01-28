@@ -4,6 +4,9 @@
 #' paths to LAS/LAZ objects.
 #' @param res Resolution of the resulting raster.
 #' @param fill.holes Logical. Try to fill holes in lidar point classification.
+#' @param low.veg.as.ground Logical. Classify low vegetation (<1 m high) as ground?
+#' Default is TRUE. If FALSE, low vegetation will be grouped together with medium
+#' and high vegetation.
 #' @param filename Character. Output filename. Note that if a file already exists
 #' with that name, it will be overwritten.
 #'
@@ -24,6 +27,7 @@
 rasterize_lidar_cover_class <- function(las = NULL,
                                         res = 1,
                                         fill.holes = TRUE,
+                                        low.veg.as.ground = TRUE,
                                         filename = NULL) {
 
   pts <- lidR::readLAS(las, select = "xyc", filter = "-keep_class 2 3 4 5 6 9 17")
@@ -31,13 +35,20 @@ rasterize_lidar_cover_class <- function(las = NULL,
   # see classes https://github.com/Pakillo/CityShadeMapper/issues/2#issuecomment-1117648511
   # reclassify bridges as ground
   pts$Classification[pts$Classification == 17] <- as.integer(2)
-  # reclassify low vegetation (<1m) as ground
-  pts$Classification[pts$Classification == 3] <- as.integer(2)
+
+  # reclassify low vegetation (<1m) as ground?
+  if (isTRUE(low.veg.as.ground)) {
+    pts$Classification[pts$Classification == 3] <- as.integer(2)
+  } else {
+    pts$Classification[pts$Classification == 3] <- as.integer(4)
+  }
+
   # join classes 4 & 5 (vegetation > 1m high)
   pts$Classification[pts$Classification == 5] <- as.integer(4)
 
   pts.class <- lidR::pixel_metrics(pts,
-                                   func = CityShadeMapper:::max.class(Classification),
+                                   # func = CityShadeMapper:::max.class(Classification),
+                                   func = ~list(max.class = max(Classification, na.rm = TRUE)),
                                    res = res)
 
   if (!is.null(filename)) {
@@ -58,7 +69,7 @@ rasterize_lidar_cover_class <- function(las = NULL,
 }
 
 
-max.class <- function(x) {max(x, na.rm = TRUE)}
+# max.class <- function(x) {max(x, na.rm = TRUE)}
 
 fill_holes <- function(ras = NULL) {
 

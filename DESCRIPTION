@@ -1,6 +1,6 @@
 Package: CityShadeMapper
 Title: Generate High Resolution Shade Maps and Shaded Routes from Remote Sensing Data
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: c(
     person("Francisco", "Rodríguez-Sánchez", 
       email = "f.rodriguez.sanc@gmail.com", 
@@ -17,7 +17,7 @@ License: AGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 LazyData: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
 Imports: 
     class,
     gdistance,
