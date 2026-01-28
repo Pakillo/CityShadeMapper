@@ -113,6 +113,7 @@ make_shademap_canopy <- function(height.ras = NULL,
                                      sun.angle = sunpos$azimuth[i],
                                      crs = terra::crs(height.ras),
                                      extent = terra::ext(height.ras),
+                                     zscale = zscale,
                                      filename = tempfile(
                                        pattern = "shaderas",
                                        fileext = ".tif"),
