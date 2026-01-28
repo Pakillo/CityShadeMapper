@@ -24,7 +24,8 @@
 rasterize_lidar_cover_class <- function(las = NULL,
                                         res = 1,
                                         fill.holes = TRUE,
-                                        filename = NULL) {
+                                        filename = NULL,
+                                        correct.low.veg = TRUE) {
 
   pts <- lidR::readLAS(las, select = "xyc", filter = "-keep_class 2 3 4 5 6 9 17")
   #table(pts$Classification)
@@ -32,7 +33,9 @@ rasterize_lidar_cover_class <- function(las = NULL,
   # reclassify bridges as ground
   pts$Classification[pts$Classification == 17] <- as.integer(2)
   # reclassify low vegetation (<1m) as ground
-  pts$Classification[pts$Classification == 3] <- as.integer(2)
+  if(correct.low.veg){
+    pts$Classification[pts$Classification == 3] <- as.integer(2)
+  }
   # join classes 4 & 5 (vegetation > 1m high)
   pts$Classification[pts$Classification == 5] <- as.integer(4)
 
