@@ -20,7 +20,8 @@ rasterize_lidar_cover_class(
 
   A
   [`lidR::LAScatalog-class()`](https://rdrr.io/pkg/lidR/man/LAScatalog-class.html)
-  object, or a character vector with paths to LAS/LAZ objects.
+  object, or a character vector with paths to LAS/LAZ objects, or a LAS
+  object including point classifications.
 
 - res:
 
