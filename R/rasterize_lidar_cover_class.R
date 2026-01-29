@@ -1,7 +1,7 @@
 #' Get raster of cover classification from lidar points
 #'
 #' @param las A [lidR::LAScatalog-class()] object, or a character vector with
-#' paths to LAS/LAZ objects.
+#' paths to LAS/LAZ objects, or a LAS object including point classifications.
 #' @param res Resolution of the resulting raster.
 #' @param fill.holes Logical. Try to fill holes in lidar point classification.
 #' @param low.veg.as.ground Logical. Classify low vegetation (<1 m high) as ground?
@@ -30,7 +30,12 @@ rasterize_lidar_cover_class <- function(las = NULL,
                                         low.veg.as.ground = TRUE,
                                         filename = NULL) {
 
-  pts <- lidR::readLAS(las, select = "xyc", filter = "-keep_class 2 3 4 5 6 9 17")
+  if (inherits(las, "LAS")) {
+    pts2 <- lidR::filter_poi(las, Classification %in% c(2, 3, 4, 5, 6, 9, 17))
+  } else {
+    pts <- lidR::readLAS(las, select = "xyc", filter = "-keep_class 2 3 4 5 6 9 17")
+  }
+
   #table(pts$Classification)
   # see classes https://github.com/Pakillo/CityShadeMapper/issues/2#issuecomment-1117648511
   # reclassify bridges as ground

@@ -1,6 +1,6 @@
 Package: CityShadeMapper
 Title: Generate High Resolution Shade Maps and Shaded Routes from Remote Sensing Data
-Version: 0.0.3
+Version: 0.0.4
 Authors@R: c(
     person("Francisco", "Rodríguez-Sánchez", 
       email = "f.rodriguez.sanc@gmail.com", 

@@ -14,7 +14,7 @@ rasterize_lidar_cover_class(
 }
 \arguments{
 \item{las}{A \code{\link[lidR:LAScatalog-class]{lidR::LAScatalog-class()}} object, or a character vector with
-paths to LAS/LAZ objects.}
+paths to LAS/LAZ objects, or a LAS object including point classifications.}
 
 \item{res}{Resolution of the resulting raster.}
 
