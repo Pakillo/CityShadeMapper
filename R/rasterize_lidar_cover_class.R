@@ -31,7 +31,7 @@ rasterize_lidar_cover_class <- function(las = NULL,
                                         filename = NULL) {
 
   if (inherits(las, "LAS")) {
-    pts2 <- lidR::filter_poi(las, Classification %in% c(2, 3, 4, 5, 6, 9, 17))
+    pts <- lidR::filter_poi(las, Classification %in% c(2, 3, 4, 5, 6, 9, 17))
   } else {
     pts <- lidR::readLAS(las, select = "xyc", filter = "-keep_class 2 3 4 5 6 9 17")
   }
